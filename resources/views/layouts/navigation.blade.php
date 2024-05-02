@@ -23,34 +23,34 @@
                 </a>
             </li>
 
-            @can('administration')
+{{--            @can('administration')--}}
             <li class="nav-item has-treeview {{ request()->is('users*') || request()->is('roles*') ?  'menu-open' : '' }}">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-edit text-green"></i>
                     <p> {{ __('Administration') }} <i class="fas fa-angle-left right text-green"></i></p>
                 </a>
                 <ul class="nav nav-treeview">
-                    @can('administration-user')
+{{--                    @can('administration-user')--}}
                     <li class="nav-item">
                         <a href="{{ route('users.index') }}" class="nav-link  {{ request()->routeIs('users.*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa fa-user-circle text-green"></i>
                             <p> {{ __('Users') }} </p>
                         </a>
                     </li>
-                    @endcan
-                    @can('administration-role')
+{{--                    @endcan--}}
+{{--                    @can('administration-role')--}}
                     <li class="nav-item">
                         <a href="{{ route('roles.index') }}" class="nav-link {{ request()->routeIs('roles.*') ? 'active' : '' }}">
                             <i class="nav-icon fas  fa-universal-access text-green"></i>
                             <p> {{ __('Roles') }} </p>
                         </a>
                     </li>
-                    @endcan
+{{--                    @endcan--}}
                 </ul>
             </li>
-            @endcan
-            @can('master-data')
-                <li class="nav-item {{ request()->is('items-category*') || request()->is('items*') || request()->is('units*') ?  'menu-open' : '' }}">
+{{--            @endcan--}}
+{{--            @can('master-data')--}}
+                <li class="nav-item {{ request()->is('items-category*') || request()->is('items*') || request()->is('units*') || request()->is('services-category*') || request()->is('services*') ?  'menu-open' : '' }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-address-card text-blue"></i>
                         <p> {{ __('Master Data') }} <i class="fas fa-angle-left right text-blue"></i></p>
@@ -59,7 +59,7 @@
 {{--                        @can('master-data-items-category')--}}
                         <li class="nav-item">
                             <a href="{{ route('items-category.index') }}" class="nav-link {{ request()->routeIs('items-category.*') ? 'active' : '' }}">
-                                <i class="nav-icon fas  fa-place-of-worship text-blue"></i>
+                                <i class="nav-icon fas  fa-building text-blue"></i>
                                 <p> {{ __('Item Category') }} </p>
                             </a>
                         </li>
@@ -78,11 +78,23 @@
                                 <p> {{ __('Units') }} </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('services-category.index') }}" class="nav-link {{ request()->routeIs('services-category.*') ? 'active' : '' }}">
+                                <i class="nav-icon fas  fa-place-of-worship text-blue"></i>
+                                <p> {{ __('Service Category') }} </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('services.index') }}" class="nav-link {{ request()->routeIs('services.*') ? 'active' : '' }}">
+                                <i class="nav-icon fas  fa-pen text-blue"></i>
+                                <p> {{ __('Service') }} </p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
-            @endcan
+{{--            @endcan--}}
 {{--            @can('master-data')--}}
-                <li class="nav-item {{ request()->is('items-category*') || request()->is('items*') || request()->is('units*') ?  'menu-open' : '' }}">
+                <li class="nav-item {{ request()->is('suppliers*') ?  'menu-open' : '' }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-store text-yellow"></i>
                         <p> {{ __('Stock Management') }} <i class="fas fa-angle-left right text-yellow"></i></p>
@@ -90,9 +102,27 @@
                     <ul class="nav nav-treeview">
                         {{--                        @can('master-data-items-category')--}}
                         <li class="nav-item">
-                            <a href="{{ route('items-category.index') }}" class="nav-link {{ request()->routeIs('items-category.*') ? 'active' : '' }}">
-                                <i class="nav-icon fas  fa-place-of-worship text-blue"></i>
-                                <p> {{ __('Item Category') }} </p>
+                            <a href="{{ route('suppliers.index') }}" class="nav-link {{ request()->routeIs('items-category.*') ? 'active' : '' }}">
+                                <i class="nav-icon fas  fa-users text-yellow"></i>
+                                <p> {{ __('Suppliers') }} </p>
+                            </a>
+                        </li>
+                        {{--                        @endcan--}}
+                    </ul>
+                </li>
+{{--            @endcan--}}
+            {{--            @can('master-data')--}}
+                <li class="nav-item {{ request()->is('customers*') ?  'menu-open' : '' }}">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-print text-orange"></i>
+                        <p> {{ __('Publication Management') }} <i class="fas fa-angle-left right text-orange"></i></p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        {{--                        @can('master-data-items-category')--}}
+                        <li class="nav-item">
+                            <a href="{{ route('customers.index') }}" class="nav-link {{ request()->routeIs('items-category.*') ? 'active' : '' }}">
+                                <i class="nav-icon fas  fa-users text-orange"></i>
+                                <p> {{ __('Customers') }} </p>
                             </a>
                         </li>
                         {{--                        @endcan--}}

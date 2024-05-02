@@ -7,59 +7,55 @@ use Illuminate\Http\Request;
 
 class ServiceCategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $serviceCategories = ServiceCategory::all();
+        return view('services-category.index',compact('serviceCategories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('services-category.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'remark' => 'nullable',
+        ]);
+
+        ServiceCategory::create($validatedData);
+
+        return redirect()->route('services-category.index')
+            ->with('success', 'Service category created successfully');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(ServiceCategory $serviceCategory)
+    public function edit($id)
     {
-        //
+        $serviceCategory = ServiceCategory::find($id);
+
+        return view('services-category.edit',compact('serviceCategory'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(ServiceCategory $serviceCategory)
+    public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'remark' => 'nullable',
+        ]);
+
+        $serviceCategory = ServiceCategory::find($id);
+        $serviceCategory->update($validatedData);
+
+        return redirect()->route('services-category.index')
+            ->with(['success' => 'Service category updated successfully']);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, ServiceCategory $serviceCategory)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(ServiceCategory $serviceCategory)
-    {
-        //
+        ServiceCategory::find($id)->delete();
+        return redirect()->route('services-category.index')
+            ->with('success','Service category deleted successfully');
     }
 }

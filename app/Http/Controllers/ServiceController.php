@@ -3,63 +3,67 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service;
+use App\Models\ServiceCategory;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $services = Service::with('serviceCategory')->get();
+        return view('services.index',compact('services'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        $categories = ServiceCategory::all();
+        return view('services.create', compact('categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'category_id' => 'required|exists:service_categories,id',
+//            'unit_id' => 'required|exists:service_categories,id',
+            'name' => 'required',
+            'code' => 'nullable',
+            'unit_price' => 'required',
+        ]);
+
+        Service::create($validatedData);
+
+        return redirect()->route('services.index')
+            ->with('message', 'Service created successfully');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Service $service)
+    public function edit($id)
     {
-        //
+        $service = Service::find($id);
+        $categories = ServiceCategory::all();
+        return view('services.edit',compact('service', 'categories'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Service $service)
+    public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'category_id' => 'required|exists:service_categories,id',
+//            'unit_id' => 'required|exists:service_categories,id',
+            'name' => 'required',
+            'code' => 'nullable',
+            'unit_price' => 'required',
+        ]);
+
+        $service = Service::find($id);
+        $service->update($validatedData);
+
+        return redirect()->route('services.index')
+            ->with(['message' => 'service updated successfully']);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Service $service)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Service $service)
-    {
-        //
+        Service::find($id)->delete();
+        return redirect()->route('services.index')
+            ->with('success','Service deleted successfully');
     }
 }

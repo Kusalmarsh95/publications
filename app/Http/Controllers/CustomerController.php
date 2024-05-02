@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Supplier;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
-class SupplierController extends Controller
+class CustomerController extends Controller
 {
     public function index()
     {
-        $suppliers = Supplier::all();
-        return view('suppliers.index',compact('suppliers'));
+        $customers = Customer::all();
+        return view('customers.index',compact('customers'));
     }
 
     public function create()
     {
-        return view('suppliers.create');
+        return view('customers.create');
     }
 
     public function store(Request $request)
@@ -25,23 +25,22 @@ class SupplierController extends Controller
             'email' => 'nullable',
             'mobile' => 'required',
             'address' => 'required',
-            'shop_name' => 'required',
             'type' => 'required',
             'account_no' => 'nullable',
             'bank' => 'nullable',
             'bank_branch' => 'nullable',
         ]);
 
-        Supplier::create($validatedData);
+        Customer::create($validatedData);
 
-        return redirect()->route('suppliers.index')
-            ->with('success', 'Supplier created successfully');
+        return redirect()->route('customers.index')
+            ->with('success', 'Customer created successfully');
     }
 
     public function edit($id)
     {
-        $supplier = Supplier::find($id);
-        return view('suppliers.edit',compact('supplier'));
+        $customer = Customer::find($id);
+        return view('customers.edit',compact('customer'));
     }
 
     public function update(Request $request, $id)
@@ -51,24 +50,23 @@ class SupplierController extends Controller
             'email' => 'nullable',
             'mobile' => 'required',
             'address' => 'required',
-            'shop_name' => 'required',
             'type' => 'required',
             'account_no' => 'nullable',
             'bank' => 'nullable',
             'bank_branch' => 'nullable',
         ]);
 
-        $supplier = Supplier::find($id);
-        $supplier->update($validatedData);
+        $customer = Customer::find($id);
+        $customer->update($validatedData);
 
-        return redirect()->route('suppliers.index')
-            ->with(['success' => 'Supplier updated successfully']);
+        return redirect()->route('customers.index')
+            ->with(['success' => 'Customer updated successfully']);
     }
 
     public function destroy($id)
     {
-        Supplier::find($id)->delete();
-        return redirect()->route('suppliers.index')
-            ->with('success','Supplier deleted successfully');
+        Customer::find($id)->delete();
+        return redirect()->route('customers.index')
+            ->with('success','Customer deleted successfully');
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AbsentHistoryController;
 use App\Http\Controllers\ContributionInterestController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\InterestCalculationController;
 use App\Http\Controllers\ItemCategoryController;
 use App\Http\Controllers\ItemController;
@@ -22,6 +23,9 @@ use App\Http\Controllers\RegimentController;
 use App\Http\Controllers\RelationshipController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\ServiceCategoryController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\SuwasahanaController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
@@ -62,6 +66,10 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('items-category', ItemCategoryController::class);
     Route::resource('items', ItemController::class);
     Route::resource('units', MeasureUnitController::class);
+    Route::resource('suppliers', SupplierController::class);
+    Route::resource('customers', CustomerController::class);
+    Route::resource('services-category', ServiceCategoryController::class);
+    Route::resource('services', ServiceController::class);
 
 
 

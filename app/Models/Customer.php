@@ -5,14 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Service extends Model
+class Customer extends Model
 {
     use HasFactory;
-
     protected $guarded = [ ];
 
-    public function serviceCategory()
-    {
-        return $this->belongsTo(ItemCategory::class);
-    }
 }

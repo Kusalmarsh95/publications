@@ -80,21 +80,21 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('services-category.index') }}" class="nav-link {{ request()->routeIs('services-category.*') ? 'active' : '' }}">
-                                <i class="nav-icon fas  fa-place-of-worship text-blue"></i>
+                                <i class="nav-icon fas  fa-users-gear text-blue"></i>
                                 <p> {{ __('Service Category') }} </p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('services.index') }}" class="nav-link {{ request()->routeIs('services.*') ? 'active' : '' }}">
                                 <i class="nav-icon fas  fa-pen text-blue"></i>
-                                <p> {{ __('Service') }} </p>
+                                <p> {{ __('Services') }} </p>
                             </a>
                         </li>
                     </ul>
                 </li>
 {{--            @endcan--}}
 {{--            @can('master-data')--}}
-                <li class="nav-item {{ request()->is('suppliers*') ?  'menu-open' : '' }}">
+                <li class="nav-item {{ request()->is('suppliers*') || request()->routeIs('purchases.*') ?  'menu-open' : '' }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-store text-yellow"></i>
                         <p> {{ __('Stock Management') }} <i class="fas fa-angle-left right text-yellow"></i></p>
@@ -102,9 +102,17 @@
                     <ul class="nav nav-treeview">
                         {{--                        @can('master-data-items-category')--}}
                         <li class="nav-item">
-                            <a href="{{ route('suppliers.index') }}" class="nav-link {{ request()->routeIs('items-category.*') ? 'active' : '' }}">
+                            <a href="{{ route('suppliers.index') }}" class="nav-link {{ request()->routeIs('suppliers.*')  ? 'active' : '' }}">
                                 <i class="nav-icon fas  fa-users text-yellow"></i>
                                 <p> {{ __('Suppliers') }} </p>
+                            </a>
+                        </li>
+                        {{--                        @endcan--}}
+                        {{--                        @can('master-data-items-category')--}}
+                        <li class="nav-item">
+                            <a href="{{ route('purchases.index') }}" class="nav-link {{ request()->routeIs('purchases.*') ? 'active' : '' }}">
+                                <i class="nav-icon fas  fa-shopping-bag text-yellow"></i>
+                                <p> {{ __('Purchases') }} </p>
                             </a>
                         </li>
                         {{--                        @endcan--}}

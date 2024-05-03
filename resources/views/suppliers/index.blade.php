@@ -51,7 +51,7 @@
                     <tr>
                         <td>{{ ++$i }}</td>
                         <td>{{ $supplier->name ?? '-' }}</td>
-                        <td>{{ $supplier->mobile ?? '-' }}</td>
+                        <td>{{ $supplier->phone ?? '-' }}</td>
                         <td>{{ $supplier->shop_name ?? '-' }}</td>
                         <td>{{ $supplier->type ?? '-' }}</td>
                         <td class="text-center">

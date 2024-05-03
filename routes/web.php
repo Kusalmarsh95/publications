@@ -9,6 +9,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LoanController;
 use App\Http\Controllers\LoanProductController;
 use App\Http\Controllers\MeasureUnitController;
+use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\RejectReasonController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\BankBranchController;
@@ -70,6 +71,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('customers', CustomerController::class);
     Route::resource('services-category', ServiceCategoryController::class);
     Route::resource('services', ServiceController::class);
+    Route::resource('purchases', PurchaseController::class);
 
 
 

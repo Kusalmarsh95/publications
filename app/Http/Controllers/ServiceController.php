@@ -11,6 +11,7 @@ class ServiceController extends Controller
     public function index()
     {
         $services = Service::with('serviceCategory')->get();
+
         return view('services.index',compact('services'));
     }
 

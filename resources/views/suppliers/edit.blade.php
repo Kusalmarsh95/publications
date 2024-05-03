@@ -48,9 +48,9 @@
                                     </div>
                                 </div>
                                 <div class="col-6 row">
-                                    <label for="mobile" class="col-sm-4 col-form-label">Mobile No</label>
+                                    <label for="phone" class="col-sm-4 col-form-label">Mobile No</label>
                                     <div class="col-sm-8">
-                                        <input type="text" value="{{ $supplier->mobile }}" name="mobile" class="form-control">
+                                        <input type="text" value="{{ $supplier->phone }}" name="phone" class="form-control">
                                     </div>
                                 </div>
                             </div>

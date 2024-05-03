@@ -44,9 +44,9 @@
                                     </div>
                                 </div>
                                 <div class="col-6 row">
-                                    <label for="mobile" class="col-sm-4 col-form-label">Mobile No</label>
+                                    <label for="phone" class="col-sm-4 col-form-label">Mobile No</label>
                                     <div class="col-sm-8">
-                                        <input type="text" name="mobile" class="form-control">
+                                        <input type="text" name="phone" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -100,6 +100,18 @@
                                     <label for="bank_branch" class="col-sm-4 col-form-label">Bank Branch</label>
                                     <div class="col-sm-8">
                                         <input type="text" name="bank_branch" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-6 row">
+                                    <label for="status" class="col-sm-4 col-form-label">Active</label>
+                                    <div class="col-sm-8">
+                                        <select name="status" class=" col-sm-8 form-control" data-live-search="true">
+                                            <option selected>Select Status</option>
+                                            <option value="1">Yes</option>
+                                            <option value="0">No</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>

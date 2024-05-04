@@ -10,4 +10,13 @@ class Purchase extends Model
     use HasFactory;
     protected $guarded = [ ];
 
+    public function supplier()
+    {
+        return $this->belongsTo(Supplier::class,  'supplier_id');
+    }
+    public function details()
+    {
+        return $this->hasMany(PurchaseDetail::class);
+    }
+
 }

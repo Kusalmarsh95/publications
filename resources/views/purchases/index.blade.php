@@ -52,9 +52,20 @@
                     <tr>
                         <td>{{ ++$i }}</td>
                         <td>{{ $purchase->purchase_no ?? '-' }}</td>
-                        <td>{{ $purchase->supplier_id ?? '-' }}</td>
+                        <td>{{ $purchase->supplier->name ?? '-' }}</td>
                         <td>{{ $purchase->date ?? '-' }}</td>
-                        <td>{{ $purchase->status ?? '-' }}</td>
+                        <td>
+                            @if($purchase->status === 0)
+                                <label class="badge badge-success">Approved</label>
+                            @elseif($purchase->status === 1)
+                                <label class="badge badge-warning">Pending</label>
+                            @elseif($purchase->status === 2)
+                                <label class="badge badge-danger">Rejected</label>
+                            @else
+                                -
+                            @endif
+                        </td>
+
                         <td>{{ $purchase->total_amount ?? '-' }}</td>
                         <td class="text-center">
                             <a class="btn" href="{{ route('purchases.edit', $purchase->id) }}">

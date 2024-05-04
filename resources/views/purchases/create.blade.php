@@ -36,11 +36,11 @@
                         @csrf
                         <div class="card-header">
                             <div class="form-group row">
-                                <div class="col-8 row">
-                                    <label for="category_id" class="col-sm-2 col-form-label">Supplier</label>
-                                    <div class="col-sm-10">
+                                <div class="col-6 row">
+                                    <label for="supplier_id" class="col-sm-2 col-form-label">Supplier</label>
+                                    <div class="col-sm-9">
                                         @if(isset($suppliers))
-                                            <select name="category_id" class="form-control" data-live-search="true">
+                                            <select name="supplier_id" class="form-control" data-live-search="true">
                                                 <option selected>Select Supplier</option>
                                                 @foreach($suppliers as $supplier)
                                                     <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
@@ -49,10 +49,16 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="col-4 row">
-                                    <label for="category_id" class="col-sm-4 col-form-label">Date</label>
+                                <div class="col-3 row">
+                                    <label for="date" class="col-sm-4 col-form-label">Date</label>
                                     <div class="col-sm-8">
-                                        <input type="date" name="name" class="form-control" required>
+                                        <input type="date" name="date" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-3 row">
+                                    <label for="purchase_no" class="col-sm-4 col-form-label">Bill No</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="purchase_no" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
@@ -114,7 +120,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <input type="text" class="form-control discount" name="discount" required>
+                                        <input type="text" class="form-control discount" value="0" name="discount" required>
                                     </div>
                                 </div>
                             </div>
@@ -189,12 +195,17 @@
 
             $('#hr').on('click', '.remove-row', function () {
                 $(this).closest('.row').remove();
+                updateTotalAmount();
+                updateNetAmount();
             });
 
             // Event listener for item selection change
             $('#hr').on('change', '.item_id', function () {
                 var unitPrice = $(this).find(':selected').data('unit-price'); // Get the unit price from the selected option
-                $(this).closest('.row').find('.unit_price').val(unitPrice); // Set the unit price in the corresponding input field
+                $(this).closest('.row').find('.unit_price').val(unitPrice);
+                updateTotal();
+                updateTotalAmount();
+                updateNetAmount();
             });
 
             var itemPrices = {
@@ -254,6 +265,10 @@
 
             updateTotalAmount();
             updateNetAmount();
+
+            setTimeout(function () {
+                $('.alert').fadeOut();
+            }, 4000);
         });
     </script>
 

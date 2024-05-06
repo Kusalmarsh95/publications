@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PurchaseDetail extends Model
+class IssueDetails extends Model
 {
     use HasFactory;
     protected $guarded = [ ];
@@ -14,5 +14,4 @@ class PurchaseDetail extends Model
     {
         return $this->belongsTo(Item::class, 'item_id');
     }
-
 }

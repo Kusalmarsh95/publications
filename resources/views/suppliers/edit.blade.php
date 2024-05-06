@@ -38,7 +38,6 @@
                     <form action="{{ route('suppliers.update', $supplier->id) }}" method="POST">
                         @csrf
                         @method('PUT')
-                        @csrf
                         <div class="card-body">
                             <div class="form-group row">
                                 <div class="col-6 row">
@@ -104,6 +103,17 @@
                                     <label for="bank_branch" class="col-sm-4 col-form-label">Bank Branch</label>
                                     <div class="col-sm-8">
                                         <input type="text" value="{{ $supplier->bank_branch }}" name="bank_branch" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-6 row">
+                                    <label for="status" class="col-sm-4 col-form-label">Active</label>
+                                    <div class="col-sm-8">
+                                        <select name="status" class="col-sm-8 form-control" data-live-search="true">
+                                            <option value="1" {{ $supplier->status == 1 ? 'selected' : '' }}>Yes</option>
+                                            <option value="0" {{ $supplier->status == 0 ? 'selected' : '' }}>No</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>

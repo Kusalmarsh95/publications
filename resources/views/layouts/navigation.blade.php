@@ -94,7 +94,7 @@
                 </li>
 {{--            @endcan--}}
 {{--            @can('master-data')--}}
-                <li class="nav-item {{ request()->is('suppliers*') || request()->routeIs('purchases.*') ?  'menu-open' : '' }}">
+                <li class="nav-item {{ request()->is('suppliers*') || request()->routeIs('workers.*') || request()->routeIs('purchases.*') ?  'menu-open' : '' }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-store text-yellow"></i>
                         <p> {{ __('Stock Management') }} <i class="fas fa-angle-left right text-yellow"></i></p>
@@ -110,9 +110,25 @@
                         {{--                        @endcan--}}
                         {{--                        @can('master-data-items-category')--}}
                         <li class="nav-item">
+                            <a href="{{ route('workers.index') }}" class="nav-link {{ request()->routeIs('workers.*')  ? 'active' : '' }}">
+                                <i class="nav-icon fas  fa-user-nurse text-yellow"></i>
+                                <p> {{ __('Workers') }} </p>
+                            </a>
+                        </li>
+                        {{--                        @endcan--}}
+                        {{--                        @can('master-data-items-category')--}}
+                        <li class="nav-item">
                             <a href="{{ route('purchases.index') }}" class="nav-link {{ request()->routeIs('purchases.*') ? 'active' : '' }}">
                                 <i class="nav-icon fas  fa-shopping-bag text-yellow"></i>
                                 <p> {{ __('Purchases') }} </p>
+                            </a>
+                        </li>
+                        {{--                        @endcan--}}
+                        {{--                        @can('master-data-items-category')--}}
+                        <li class="nav-item">
+                            <a href="{{ route('issues.index') }}" class="nav-link {{ request()->routeIs('issues.*') ? 'active' : '' }}">
+                                <i class="nav-icon fas  fa-circle-arrow-right text-yellow"></i>
+                                <p> {{ __('Issues') }} </p>
                             </a>
                         </li>
                         {{--                        @endcan--}}
@@ -120,7 +136,7 @@
                 </li>
 {{--            @endcan--}}
             {{--            @can('master-data')--}}
-                <li class="nav-item {{ request()->is('customers*') ?  'menu-open' : '' }}">
+                <li class="nav-item {{ request()->is('customers*') || request()->is('orders*') ?  'menu-open' : '' }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-print text-orange"></i>
                         <p> {{ __('Publication Management') }} <i class="fas fa-angle-left right text-orange"></i></p>
@@ -128,9 +144,17 @@
                     <ul class="nav nav-treeview">
                         {{--                        @can('master-data-items-category')--}}
                         <li class="nav-item">
-                            <a href="{{ route('customers.index') }}" class="nav-link {{ request()->routeIs('items-category.*') ? 'active' : '' }}">
+                            <a href="{{ route('customers.index') }}" class="nav-link {{ request()->routeIs('customers.*') ? 'active' : '' }}">
                                 <i class="nav-icon fas  fa-users text-orange"></i>
                                 <p> {{ __('Customers') }} </p>
+                            </a>
+                        </li>
+                        {{--                        @endcan--}}
+                        {{--                        @can('master-data-items-category')--}}
+                        <li class="nav-item">
+                            <a href="{{ route('orders.index') }}" class="nav-link {{ request()->routeIs('orders.*') ? 'active' : '' }}">
+                                <i class="nav-icon fas  fa-arrow-up-wide-short text-orange"></i>
+                                <p> {{ __('Orders') }} </p>
                             </a>
                         </li>
                         {{--                        @endcan--}}

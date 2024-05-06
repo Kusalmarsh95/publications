@@ -4,11 +4,13 @@ use App\Http\Controllers\AbsentHistoryController;
 use App\Http\Controllers\ContributionInterestController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\InterestCalculationController;
+use App\Http\Controllers\IssueController;
 use App\Http\Controllers\ItemCategoryController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LoanController;
 use App\Http\Controllers\LoanProductController;
 use App\Http\Controllers\MeasureUnitController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\RejectReasonController;
 use App\Http\Controllers\BankController;
@@ -32,6 +34,7 @@ use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WithdrawalController;
 use App\Http\Controllers\WithdrawalProductController;
+use App\Http\Controllers\WorkerController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -72,7 +75,10 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('services-category', ServiceCategoryController::class);
     Route::resource('services', ServiceController::class);
     Route::resource('purchases', PurchaseController::class);
-
-
+    Route::post('purchase/{id}/approve', [PurchaseController::class, 'approve'])->name('purchases.approve');
+    Route::resource('workers', WorkerController::class);
+    Route::resource('issues', IssueController::class);
+    Route::post('issues/{id}/approve', [IssueController::class, 'approve'])->name('issues.approve');
+    Route::resource('orders', OrderController::class);
 
 });

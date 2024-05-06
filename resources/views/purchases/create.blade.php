@@ -38,7 +38,7 @@
                             <div class="form-group row">
                                 <div class="col-6 row">
                                     <label for="supplier_id" class="col-sm-2 col-form-label">Supplier</label>
-                                    <div class="col-sm-9">
+                                    <div class="col-sm-8">
                                         @if(isset($suppliers))
                                             <select name="supplier_id" class="form-control" data-live-search="true">
                                                 <option selected>Select Supplier</option>
@@ -47,6 +47,9 @@
                                                 @endforeach
                                             </select>
                                         @endif
+                                    </div>
+                                    <div class="col-sm-1 text-right">
+                                        <a href="{{ route('suppliers.create') }}" class="btn btn-sm btn-warning"><i class="nav-icon fas fa-user-plus"></i></a>
                                     </div>
                                 </div>
                                 <div class="col-3 row">
@@ -201,11 +204,8 @@
 
             // Event listener for item selection change
             $('#hr').on('change', '.item_id', function () {
-                var unitPrice = $(this).find(':selected').data('unit-price'); // Get the unit price from the selected option
+                var unitPrice = $(this).find(':selected').data('unit-price');
                 $(this).closest('.row').find('.unit_price').val(unitPrice);
-                updateTotal();
-                updateTotalAmount();
-                updateNetAmount();
             });
 
             var itemPrices = {

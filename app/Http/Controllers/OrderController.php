@@ -2,42 +2,43 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Item;
-use App\Models\Purchase;
-use App\Models\PurchaseDetail;
-use App\Models\Supplier;
+use App\Models\Customer;
+use App\Models\Order;
+use App\Models\OrderDetail;
+use App\Models\Service;
+use App\Models\Worker;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class PurchaseController extends Controller
+class OrderController extends Controller
 {
     public function index()
     {
-        $purchases = Purchase::with('supplier')->get();
-        return view('purchases.index',compact('purchases'));
+        $orders = Order::with('customer')->get();
+        return view('orders.index',compact('orders'));
     }
 
     public function create()
     {
-        $suppliers = Supplier::select('id', 'name')->get();
-        $items = Item::all();
-        return view('purchases.create', compact('suppliers', 'items'));
+        $customers = Customer::select('id', 'name')->get();
+        $workers = Worker::select('id', 'name')->get();
+        $services = Service::all();
+        return view('orders.create', compact('customers', 'services', 'workers'));
     }
 
     public function store(Request $request)
     {
-        $purchaseData = $request->validate([
+        $orderData = $request->validate([
             'supplier_id' => 'required|exists:suppliers,id',
             'date' => 'required',
-            'purchase_no' => 'required',
+            'order_no' => 'required',
             'discount' => 'nullable',
             'total_amount' => 'nullable',
         ]);
 
-        $purchaseData['status'] = 1;
-        $purchaseData['created_by'] = Auth::user()->name;
-        $purchaseData['total_amount'] = str_replace(',', '', $purchaseData['total_amount']);
-        $purchase = Purchase::create($purchaseData);
+        $orderData['status'] = 1;
+        $orderData['created_by'] = Auth::user()->name;
+        $orderData['total_amount'] = str_replace(',', '', $orderData['total_amount']);
+        $order = Order::create($orderData);
 
         $request->validate([
             'item_id' => 'required|array',
@@ -50,10 +51,10 @@ class PurchaseController extends Controller
             'total.*' => 'nullable',
         ]);
 
-        $purchaseDetails = [];
+        $orderDetails = [];
         foreach ($request->item_id as $key => $item_id) {
-            $purchaseDetails[] = [
-                'purchase_id' => $purchase->id,
+            $orderDetails[] = [
+                'order_id' => $order->id,
                 'item_id' => $item_id,
                 'quantity' => $request->quantity[$key],
                 'unit_price' => str_replace(',', '', $request->unit_price[$key]),
@@ -61,10 +62,10 @@ class PurchaseController extends Controller
             ];
         }
 
-        PurchaseDetail::insert($purchaseDetails);
+        OrderDetail::insert($orderDetails);
 
-        return redirect()->route('purchases.index')
-            ->with('success', 'Purchase created successfully');
+        return redirect()->route('orders.index')
+            ->with('success', 'Order created successfully');
     }
 
     public function edit($id)
@@ -171,6 +172,4 @@ class PurchaseController extends Controller
         return redirect()->route('purchases.index')
             ->with('success', 'Purchase deleted successfully');
     }
-
-
 }

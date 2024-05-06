@@ -6,10 +6,11 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6 text-Left">
-                        <h4><i class="nav-icon fas fa-store text-yellow"></i> <strong>Stock Management</strong> | Purchases Management</h4>
+                        <h4><i class="nav-icon fas fa-print text-orange"></i> <strong>Publication Management</strong> | Orders
+                            Management</h4>
                     </div>
                     <div class="col-sm-6 text-right">
-                        <h6> <strong>Stock Management</strong> > <i class="nav-icon fas fa-shopping-bag text-yellow"></i> Edit Purchase</h6>
+                        <h6> <strong>Publication Management</strong> > <i class="nav-icon fas fa-users text-orange"></i> Create Orders</h6>
                     </div>
                 </div>
                 <div class="row mb-2">
@@ -32,111 +33,90 @@
         <div class="card">
             <div class="card-header">
                 <div class="container-fluid">
-                    <form action="{{ route('purchases.update', $purchase->id) }}" method="POST">
+                    <form action="{{ route('purchases.store') }}" method="POST">
                         @csrf
-                        @method('PUT')
                         <div class="card-header">
                             <div class="form-group row">
                                 <div class="col-6 row">
-                                    <label for="supplier_id" class="col-sm-2 col-form-label">Supplier</label>
-                                    <div class="col-sm-9">
-                                        @if(isset($suppliers))
-                                            <select name="supplier_id" class="form-control" data-live-search="true">
-                                                <option disabled>Select Supplier</option>
-                                                @foreach($suppliers as $supplier)
-                                                    <option value="{{ $supplier->id }}" {{ $supplier->id == $purchase->supplier_id ? 'selected' : '' }}>{{ $supplier->name }}</option>
+                                    <label for="customer_id" class="col-sm-2 col-form-label">Customer</label>
+                                    <div class="col-sm-8">
+                                        @if(isset($customers))
+                                            <select name="customer_id" class="form-control" data-live-search="true">
+                                                <option selected>Select Customer</option>
+                                                @foreach($customers as $customer)
+                                                    <option value="{{ $customer->id }}">{{ $customer->name }}</option>
                                                 @endforeach
                                             </select>
                                         @endif
+                                    </div>
+                                    <div class="col-sm-1 text-right">
+                                        <a href="{{ route('customers.create') }}" class="btn btn-sm btn-warning"><i class="nav-icon fas fa-user-plus"></i></a>
                                     </div>
                                 </div>
                                 <div class="col-3 row">
                                     <label for="date" class="col-sm-4 col-form-label">Date</label>
                                     <div class="col-sm-8">
-                                        <input type="date" name="date" class="form-control" value="{{ $purchase->date }}" required>
+                                        <input type="date" name="date" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-3 row">
-                                    <label for="purchase_no" class="col-sm-4 col-form-label">Bill No</label>
+                                    <label for="order_no" class="col-sm-4 col-form-label">Order No</label>
                                     <div class="col-sm-8">
-                                        <input type="text" name="purchase_no" class="form-control" value="{{ $purchase->purchase_no }}" required>
+                                        <input type="text" name="order_no" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body" id="hr">
-                            <div class="row">
+                            <div class="row" >
                                 <div class="col-md-5">
                                     <div class="form-group">
-                                        <strong>Item</strong>
+                                        <strong>Service</strong>
+                                        <select class="form-control service_id" data-live-search="true" name="service_id[]" required>
+                                            <option value="" disabled selected>Select service</option>
+                                            @foreach($services as $service)
+                                                <option value="{{ $service->id }}">{{ $service->name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-1">
                                     <div class="form-group">
                                         <strong>Quantity</strong>
+                                        <input type="text" class="form-control quantity" name="quantity[]" required>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <strong>Unit Price (LKR)</strong>
+                                        <input type="text" class="form-control unit_price" name="unit_price[]" required>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <strong>Total (LKR)</strong>
+                                        <input type="text" class="form-control total" name="total[]" required>
                                     </div>
                                 </div>
                             </div>
-                            @foreach($purchase->details as $detail)
-                                <div class="row">
-                                    <div class="col-md-5">
-                                        <div class="form-group">
-                                            <select class="form-control item_id" data-live-search="true" name="item_id[]" required>
-                                                <option disabled>Select Item</option>
-                                                @foreach($items as $item)
-                                                    <option value="{{ $item->id }}" {{ $item->id == $detail->item_id ? 'selected' : '' }}>{{ $item->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-1">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control quantity" name="quantity[]" value="{{ $detail->quantity }}" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control unit_price" name="unit_price[]" value="{{ $detail->unit_price }}" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control total" name="total[]" value="{{ $detail->total }}" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-1">
-                                        <button type="button" class="btn btn-sm btn-outline-danger remove-row"><i class="fas fa-trash-alt"></i></button>
-                                    </div>
-                                </div>
-                            @endforeach
                         </div>
                         <div class="col-md-12">
                             <button type="button" class="btn btn-sm btn-success mt-2" id="addCategory">Add New &nbsp</button>
                         </div>
                         <div class="card-body">
-                            <div class="row">
+                            <div class="row" >
                                 <div class="col-md-8">
                                     <div class="form-group text-right">
-                                        <strong>Total Amount (LKR)</strong>
+                                        <strong>Total Amonut(LKR)</strong>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <input type="text" class="form-control total_amount" name="total_amount" value="{{ $purchase->total_amount }}" required>
+                                        <input type="text" class="form-control total_amount" name="total_amount" required>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row" >
                                 <div class="col-md-8">
                                     <div class="form-group text-right">
                                         <strong>Discount (%)</strong>
@@ -144,11 +124,11 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <input type="text" class="form-control discount" name="discount" value="{{ $purchase->discount }}" required>
+                                        <input type="text" class="form-control discount" value="0" name="discount" required>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row" >
                                 <div class="col-md-8">
                                     <div class="form-group text-right">
                                         <strong>Net Amount (LKR)</strong>
@@ -156,7 +136,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <input type="text" class="form-control net_amount" name="net_amount" value="{{ $purchase->net_amount }}" required>
+                                        <input type="text" class="form-control net_amount" name="net_amount" required>
                                     </div>
                                 </div>
                             </div>
@@ -179,10 +159,10 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div class="form-group">
-                            <select class="form-control item_id" data-live-search="true" name="item_id[]" required>
-                                <option disabled>Select Item</option>
-                                @foreach($items as $item)
-                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            <select class="form-control service_id" data-live-search="true" name="service_id[]" required>
+                                <option value="" disabled selected>Select service</option>
+                                @foreach($services as $service)
+                <option value="{{ $service->id }}">{{ $service->name }}</option>
                                 @endforeach
                 </select>
             </div>
@@ -203,11 +183,11 @@
             </div>
         </div>
         <div class="col-md-1">
-            <button type="button" class="btn btn-sm btn-outline-danger remove-row"><i class="fas fa-trash-alt"></i></button>
-        </div>
+                        <button type="button" class="btn btn-sm btn-outline-danger remove-row"><i class="fas fa-trash-alt"></i></button>
+                    </div>
     </div>
-`;
 
+`;
                 $('#hr').append(newRow);
             }
 
@@ -223,24 +203,24 @@
                 updateNetAmount();
             });
 
-            // Event listener for item selection change
-            $('#hr').on('change', '.item_id', function () {
+            // Event listener for service selection change
+            $('#hr').on('change', '.service_id', function () {
                 var unitPrice = $(this).find(':selected').data('unit-price');
                 $(this).closest('.row').find('.unit_price').val(unitPrice);
             });
 
-            var itemPrices = {
-                @foreach($items as $item)
-                '{{ $item->id }}': '{{ $item->buying_price  }}',
+            var servicePrices = {
+                @foreach($services as $service)
+                '{{ $service->id }}': '{{ $service->unit_price  }}',
                 @endforeach
             };
 
-            $('#hr').on('change', '.item_id', function () {
-                var selectedItemId = $(this).val();
+            $('#hr').on('change', '.service_id', function () {
+                var selectedserviceId = $(this).val();
                 var unitPriceInput = $(this).closest('.row').find('.unit_price');
-                if (itemPrices.hasOwnProperty(selectedItemId)) {
+                if (servicePrices.hasOwnProperty(selectedserviceId)) {
                     // Format the unit price as number with two decimal places and comma separators
-                    var formattedPrice = parseFloat(itemPrices[selectedItemId]).toLocaleString('en-US', {
+                    var formattedPrice = parseFloat(servicePrices[selectedserviceId]).toLocaleString('en-US', {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2
                     });
@@ -250,7 +230,7 @@
                 }
             });
 
-            $('#hr').on('input', '.quantity, .unit_price', function () {
+            $('#hr').on('input', '.quantity', function () {
                 updateTotal($(this).closest('.row'));
                 updateTotalAmount();
                 updateNetAmount();

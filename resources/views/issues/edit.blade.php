@@ -6,10 +6,10 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6 text-Left">
-                        <h4><i class="nav-icon fas fa-store text-yellow"></i> <strong>Stock Management</strong> | Purchases Management</h4>
+                        <h4><i class="nav-icon fas fa-store text-yellow"></i> <strong>Stock Management</strong> | Issues Management</h4>
                     </div>
                     <div class="col-sm-6 text-right">
-                        <h6> <strong>Stock Management</strong> > <i class="nav-icon fas fa-shopping-bag text-yellow"></i> Edit Purchase</h6>
+                        <h6> <strong>Stock Management</strong> > <i class="nav-icon fas fa-shopping-bag text-yellow"></i> Edit Issues</h6>
                     </div>
                 </div>
                 <div class="row mb-2">
@@ -32,19 +32,19 @@
         <div class="card">
             <div class="card-header">
                 <div class="container-fluid">
-                    <form action="{{ route('purchases.update', $purchase->id) }}" method="POST">
+                    <form action="{{ route('issues.update', $issue->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="card-header">
                             <div class="form-group row">
                                 <div class="col-6 row">
-                                    <label for="supplier_id" class="col-sm-2 col-form-label">Supplier</label>
+                                    <label for="worker_id" class="col-sm-2 col-form-label">Worker</label>
                                     <div class="col-sm-9">
-                                        @if(isset($suppliers))
-                                            <select name="supplier_id" class="form-control" data-live-search="true">
-                                                <option disabled>Select Supplier</option>
-                                                @foreach($suppliers as $supplier)
-                                                    <option value="{{ $supplier->id }}" {{ $supplier->id == $purchase->supplier_id ? 'selected' : '' }}>{{ $supplier->name }}</option>
+                                        @if(isset($workers))
+                                            <select name="worker_id" class="form-control" data-live-search="true">
+                                                <option selected>Select Worker</option>
+                                                @foreach($workers as $worker)
+                                                    <option value="{{ $worker->id }}" {{ $worker->id == $issue->worker_id ? 'selected' : '' }}>{{ $worker->name }}</option>
                                                 @endforeach
                                             </select>
                                         @endif
@@ -53,13 +53,13 @@
                                 <div class="col-3 row">
                                     <label for="date" class="col-sm-4 col-form-label">Date</label>
                                     <div class="col-sm-8">
-                                        <input type="date" name="date" class="form-control" value="{{ $purchase->date }}" required>
+                                        <input type="date" name="date" value="{{ $issue->date }}" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-3 row">
-                                    <label for="purchase_no" class="col-sm-4 col-form-label">Bill No</label>
+                                    <label for="issue_no" class="col-sm-4 col-form-label">Issue No</label>
                                     <div class="col-sm-8">
-                                        <input type="text" name="purchase_no" class="form-control" value="{{ $purchase->purchase_no }}" required>
+                                        <input type="text" name="issue_no" value="{{ $issue->issue_no }}" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
@@ -87,7 +87,7 @@
                                     </div>
                                 </div>
                             </div>
-                            @foreach($purchase->details as $detail)
+                            @foreach($issue->details as $detail)
                                 <div class="row">
                                     <div class="col-md-5">
                                         <div class="form-group">
@@ -124,45 +124,21 @@
                             <button type="button" class="btn btn-sm btn-success mt-2" id="addCategory">Add New &nbsp</button>
                         </div>
                         <div class="card-body">
-                            <div class="row">
+                            <div class="row" >
                                 <div class="col-md-8">
                                     <div class="form-group text-right">
-                                        <strong>Total Amount (LKR)</strong>
+                                        <strong>Total Items</strong>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <input type="text" class="form-control total_amount" name="total_amount" value="{{ $purchase->total_amount }}" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="form-group text-right">
-                                        <strong>Discount (%)</strong>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control discount" name="discount" value="{{ $purchase->discount }}" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="form-group text-right">
-                                        <strong>Net Amount (LKR)</strong>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control net_amount" name="net_amount" value="{{ $purchase->net_amount }}" required>
+                                        <input type="text" class="form-control total_items" name="total_items" required>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 text-right">
-                            <button type="submit" class="btn btn-outline-primary btn-sm">Submit</button>
+                            <button type="submit" class="btn btn-outline-primary btn-sm">Update</button>
                         </div>
                     </form>
                 </div>
@@ -173,14 +149,13 @@
         $(document).ready(function () {
             var categoryCounter = 1;
 
-            // Function to add a new category row
             function addCategoryRow() {
                 var newRow = `
                 <div class="row">
                     <div class="col-md-5">
                         <div class="form-group">
                             <select class="form-control item_id" data-live-search="true" name="item_id[]" required>
-                                <option disabled>Select Item</option>
+                                <option value="" disabled selected>Select Item</option>
                                 @foreach($items as $item)
                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                                 @endforeach
@@ -203,27 +178,24 @@
             </div>
         </div>
         <div class="col-md-1">
-            <button type="button" class="btn btn-sm btn-outline-danger remove-row"><i class="fas fa-trash-alt"></i></button>
-        </div>
+                        <button type="button" class="btn btn-sm btn-outline-danger remove-row"><i class="fas fa-trash-alt"></i></button>
+                    </div>
     </div>
-`;
 
+`;
                 $('#hr').append(newRow);
             }
 
-            // Event listener for "Add New" button click
             $('#addCategory').click(function (e) {
-                e.preventDefault(); // Prevent the default form submission
-                addCategoryRow(); // Add a new category row
+                e.preventDefault();
+                addCategoryRow();
             });
 
             $('#hr').on('click', '.remove-row', function () {
                 $(this).closest('.row').remove();
-                updateTotalAmount();
-                updateNetAmount();
+                updatetotalItems();
             });
 
-            // Event listener for item selection change
             $('#hr').on('change', '.item_id', function () {
                 var unitPrice = $(this).find(':selected').data('unit-price');
                 $(this).closest('.row').find('.unit_price').val(unitPrice);
@@ -239,7 +211,6 @@
                 var selectedItemId = $(this).val();
                 var unitPriceInput = $(this).closest('.row').find('.unit_price');
                 if (itemPrices.hasOwnProperty(selectedItemId)) {
-                    // Format the unit price as number with two decimal places and comma separators
                     var formattedPrice = parseFloat(itemPrices[selectedItemId]).toLocaleString('en-US', {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2
@@ -250,10 +221,9 @@
                 }
             });
 
-            $('#hr').on('input', '.quantity, .unit_price', function () {
+            $('#hr').on('input', '.quantity', function () {
                 updateTotal($(this).closest('.row'));
-                updateTotalAmount();
-                updateNetAmount();
+                updatetotalItems();
             });
 
             function updateTotal(row) {
@@ -264,28 +234,17 @@
                 totalInput.val(total.toLocaleString('en-US', { minimumFractionDigits: 2 }));
             }
 
-            function updateTotalAmount() {
-                var totalAmount = 0;
-                $('input[name="total[]"]').each(function () {
+            function updatetotalItems() {
+                var totalItems = 0;
+                $('input[name="quantity[]"]').each(function () {
                     var total = parseFloat($(this).val().replace(/,/g, '')) || 0;
-                    totalAmount = total + totalAmount;
+                    totalItems = total + totalItems;
                 });
 
-                $('input[name="total_amount"]').val(totalAmount.toLocaleString('en-US', { minimumFractionDigits: 2 }));
+                $('input[name="total_items"]').val(totalItems);
             }
 
-            $('input[name="discount"]').on('input', function () {
-                updateNetAmount();
-            });
-            function updateNetAmount() {
-                var totalAmount = parseFloat($('input[name="total_amount"]').val().replace(/,/g, '')) || 0; // Remove commas before parsing
-                var discount = parseFloat($('input[name="discount"]').val()) || 0;
-                var netAmount = totalAmount - (totalAmount * discount / 100);
-                $('input[name="net_amount"]').val(netAmount.toLocaleString('en-US', { minimumFractionDigits: 2 }));
-            }
-
-            updateTotalAmount();
-            updateNetAmount();
+            updatetotalItems();
 
             setTimeout(function () {
                 $('.alert').fadeOut();

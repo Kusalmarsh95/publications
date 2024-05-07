@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AbsentHistoryController;
+use App\Http\Controllers\BotManController;
 use App\Http\Controllers\ContributionInterestController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\InterestCalculationController;
@@ -32,6 +33,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\SuwasahanaController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WebSiteController;
 use App\Http\Controllers\WithdrawalController;
 use App\Http\Controllers\WithdrawalProductController;
 use App\Http\Controllers\WorkerController;
@@ -81,4 +83,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('issues/{id}/approve', [IssueController::class, 'approve'])->name('issues.approve');
     Route::resource('orders', OrderController::class);
 
+    Route::get('shop-index', [WebSiteController::class, 'index'])->name('shop-index');
+
+    Route::match(['get', 'post'], '/botman', [BotManController::class, 'handle']);
 });

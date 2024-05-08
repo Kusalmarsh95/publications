@@ -33,7 +33,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="container-fluid">
-                    <form action="{{ route('purchases.store') }}" method="POST">
+                    <form action="{{ route('orders.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="card-header">
                             <div class="form-group row">
@@ -62,8 +62,18 @@
                                 <div class="col-3 row">
                                     <label for="order_no" class="col-sm-4 col-form-label">Order No</label>
                                     <div class="col-sm-8">
-                                        <input type="text" name="order_no" class="form-control" required>
+                                        <input type="text" value="{{ $next }}" name="order_no" class="form-control" readonly>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-3">
+                                <label for="files" class="col-form-label">Upload File</label>
+                                <input type="file" name="files" class="form-control-file">
+                            </div>
+                            <div class="col-12 mt-3">
+                                <label for="date" class="col-sm-4 col-form-label">Remarks</label>
+                                <div class="col-sm-12">
+                                    <input type="text" name="remarks" class="form-control" >
                                 </div>
                             </div>
                         </div>

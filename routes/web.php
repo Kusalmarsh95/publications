@@ -52,7 +52,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('webpages.index');
 });
 
 Auth::routes();
@@ -82,8 +82,10 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('issues', IssueController::class);
     Route::post('issues/{id}/approve', [IssueController::class, 'approve'])->name('issues.approve');
     Route::resource('orders', OrderController::class);
+    Route::post('orders/{id}/approve', [OrderController::class, 'approve'])->name('orders.approve');
 
     Route::get('shop-index', [WebSiteController::class, 'index'])->name('shop-index');
+    Route::get('digital-offset-printing', [WebSiteController::class, 'digitalPrint'])->name('digital-offset');
 
     Route::match(['get', 'post'], '/botman', [BotManController::class, 'handle']);
 });

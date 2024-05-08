@@ -6,10 +6,10 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6 text-Left">
-                        <h4><i class="nav-icon fas fa-store text-yellow"></i> <strong>Stock Management</strong> | Purchases Management</h4>
+                        <h4><i class="nav-icon fas fa-store text-yellow"></i> <strong>Stock Management</strong> | Orders Management</h4>
                     </div>
                     <div class="col-sm-6 text-right">
-                        <h6> <strong>Stock Management</strong> > <i class="nav-icon fas fa-shopping-bag text-yellow"></i> Edit Purchase</h6>
+                        <h6> <strong>Stock Management</strong> > <i class="nav-icon fas fa-shopping-bag text-yellow"></i> Edit Order</h6>
                     </div>
                 </div>
                 <div class="row mb-2">
@@ -32,19 +32,19 @@
         <div class="card">
             <div class="card-header">
                 <div class="container-fluid">
-                    <form action="{{ route('purchases.update', $purchase->id) }}" method="POST">
+                    <form action="{{ route('orders.update', $order->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="card-header">
                             <div class="form-group row">
                                 <div class="col-6 row">
-                                    <label for="supplier_id" class="col-sm-2 col-form-label">Supplier</label>
+                                    <label for="customer_id" class="col-sm-2 col-form-label">Customer</label>
                                     <div class="col-sm-9">
-                                        @if(isset($suppliers))
-                                            <select name="supplier_id" class="form-control" data-live-search="true">
-                                                <option disabled>Select Supplier</option>
-                                                @foreach($suppliers as $supplier)
-                                                    <option value="{{ $supplier->id }}" {{ $supplier->id == $purchase->supplier_id ? 'selected' : '' }}>{{ $supplier->name }}</option>
+                                        @if(isset($customers))
+                                            <select name="customer_id" class="form-control" data-live-search="true">
+                                                <option disabled>Select Customer</option>
+                                                @foreach($customers as $customer)
+                                                    <option value="{{ $customer->id }}" {{ $customer->id == $order->customer_id ? 'selected' : '' }}>{{ $customer->name }}</option>
                                                 @endforeach
                                             </select>
                                         @endif
@@ -53,13 +53,28 @@
                                 <div class="col-3 row">
                                     <label for="date" class="col-sm-4 col-form-label">Date</label>
                                     <div class="col-sm-8">
-                                        <input type="date" name="date" class="form-control" value="{{ $purchase->date }}" required>
+                                        <input type="date" name="date" class="form-control" value="{{ $order->date }}" required>
                                     </div>
                                 </div>
                                 <div class="col-3 row">
-                                    <label for="purchase_no" class="col-sm-4 col-form-label">Bill No</label>
+                                    <label for="order_no" class="col-sm-4 col-form-label">Order No</label>
                                     <div class="col-sm-8">
-                                        <input type="text" name="purchase_no" class="form-control" value="{{ $purchase->purchase_no }}" required>
+                                        <input type="text" name="order_no" class="form-control" value="{{ $order->order_no }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-12 mt-3">
+                                    <label for="files" class="col-form-label">Upload New File</label>
+                                    <input type="file" name="files" class="form-control-file">
+                                    @if ($order->files)
+                                        <p>Current File: <a href="{{ asset('storage/' . $order->files) }}" target="_blank"><i class="fas fa-file-export"></i></a></p>
+                                    @else
+                                        <p>No file uploaded</p>
+                                    @endif
+                                </div>
+                                <div class="col-12">
+                                    <label for="date" class="col-sm-4 col-form-label">Remarks</label>
+                                    <div class="col-sm-12">
+                                        <input type="text" name="remarks" class="form-control" value="{{ $order->remarks }}">
                                     </div>
                                 </div>
                             </div>
@@ -68,7 +83,7 @@
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="form-group">
-                                        <strong>Item</strong>
+                                        <strong>Service</strong>
                                     </div>
                                 </div>
                                 <div class="col-md-1">
@@ -87,14 +102,14 @@
                                     </div>
                                 </div>
                             </div>
-                            @foreach($purchase->details as $detail)
+                            @foreach($order->details as $detail)
                                 <div class="row">
                                     <div class="col-md-5">
                                         <div class="form-group">
-                                            <select class="form-control item_id" data-live-search="true" name="item_id[]" required>
-                                                <option disabled>Select Item</option>
-                                                @foreach($items as $item)
-                                                    <option value="{{ $item->id }}" {{ $item->id == $detail->item_id ? 'selected' : '' }}>{{ $item->name }}</option>
+                                            <select class="form-control service_id" data-live-search="true" name="service_id[]" required>
+                                                <option disabled>Select Service</option>
+                                                @foreach($services as $service)
+                                                    <option value="{{ $service->id }}" {{ $service->id == $detail->service_id ? 'selected' : '' }}>{{ $service->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -132,7 +147,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <input type="text" class="form-control total_amount" name="total_amount" value="{{ $purchase->total_amount }}" required>
+                                        <input type="text" class="form-control total_amount" name="total_amount" value="{{ $order->total_amount }}" required>
                                     </div>
                                 </div>
                             </div>
@@ -144,7 +159,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <input type="text" class="form-control discount" name="discount" value="{{ $purchase->discount }}" required>
+                                        <input type="text" class="form-control discount" name="discount" value="{{ $order->discount }}" required>
                                     </div>
                                 </div>
                             </div>
@@ -156,7 +171,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <input type="text" class="form-control net_amount" name="net_amount" value="{{ $purchase->net_amount }}" required>
+                                        <input type="text" class="form-control net_amount" name="net_amount" value="{{ $order->net_amount }}" required>
                                     </div>
                                 </div>
                             </div>
@@ -179,10 +194,10 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div class="form-group">
-                            <select class="form-control item_id" data-live-search="true" name="item_id[]" required>
-                                <option disabled>Select Item</option>
-                                @foreach($items as $item)
-                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            <select class="form-control service_id" data-live-search="true" name="service_id[]" required>
+                                <option disabled>Select Service</option>
+                                @foreach($services as $service)
+                <option value="{{ $service->id }}">{{ $service->name }}</option>
                                 @endforeach
                 </select>
             </div>
@@ -223,24 +238,24 @@
                 updateNetAmount();
             });
 
-            // Event listener for item selection change
-            $('#hr').on('change', '.item_id', function () {
+            // Event listener for service selection change
+            $('#hr').on('change', '.service_id', function () {
                 var unitPrice = $(this).find(':selected').data('unit-price');
                 $(this).closest('.row').find('.unit_price').val(unitPrice);
             });
 
-            var itemPrices = {
-                @foreach($items as $item)
-                '{{ $item->id }}': '{{ $item->buying_price  }}',
+            var servicePrices = {
+                @foreach($services as $service)
+                '{{ $service->id }}': '{{ $service->unit_price  }}',
                 @endforeach
             };
 
-            $('#hr').on('change', '.item_id', function () {
-                var selectedItemId = $(this).val();
+            $('#hr').on('change', '.service_id', function () {
+                var selectedserviceId = $(this).val();
                 var unitPriceInput = $(this).closest('.row').find('.unit_price');
-                if (itemPrices.hasOwnProperty(selectedItemId)) {
+                if (servicePrices.hasOwnProperty(selectedserviceId)) {
                     // Format the unit price as number with two decimal places and comma separators
-                    var formattedPrice = parseFloat(itemPrices[selectedItemId]).toLocaleString('en-US', {
+                    var formattedPrice = parseFloat(servicePrices[selectedserviceId]).toLocaleString('en-US', {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2
                     });

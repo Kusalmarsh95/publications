@@ -6,10 +6,10 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6 text-Left">
-                        <h4><i class="nav-icon fas fa-store text-yellow"></i> <strong>Stock Management</strong> | Purchases Management</h4>
+                        <h4><i class="nav-icon fas fa-store text-yellow"></i> <strong>Stock Management</strong> | Order Process</h4>
                     </div>
                     <div class="col-sm-6 text-right">
-                        <h6> <strong>Stock Management</strong> > <i class="nav-icon fas fa-shopping-bag text-yellow"></i> Purchase Approval</h6>
+                        <h6> <strong>Stock Management</strong> > <i class="nav-icon fas fa-shopping-bag text-yellow"></i> Order Approval</h6>
                     </div>
                 </div>
                 <div class="row mb-2">
@@ -32,27 +32,41 @@
         <div class="card">
             <div class="card-header">
                 <div class="container-fluid">
-                    <form action="{{ route('purchases.approve', $purchase->id) }}" method="POST">
+                    <form action="{{ route('orders.approve', $order->id) }}" method="POST">
                         @csrf
 {{--                        @method('PUT')--}}
                         <div class="card-header">
                             <div class="form-group row">
                                 <div class="col-6 row">
-                                    <label for="supplier_id" class="col-sm-2 col-form-label">Supplier</label>
+                                    <label for="customer_id" class="col-sm-2 col-form-label">Customer</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="purchase_no" class="form-control" value="{{ $purchase->supplier->name }}" readonly>
+                                        <input type="text" class="form-control" value="{{ $order->customer->name }}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-3 row">
                                     <label for="date" class="col-sm-4 col-form-label">Date</label>
                                     <div class="col-sm-8">
-                                        <input type="text" name="date" class="form-control" value="{{ $purchase->date }}" readonly>
+                                        <input type="text" name="date" class="form-control" value="{{ $order->date }}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-3 row">
-                                    <label for="purchase_no" class="col-sm-4 col-form-label">Bill No</label>
+                                    <label class="col-sm-4 col-form-label">Order No</label>
                                     <div class="col-sm-8">
-                                        <input type="text" name="purchase_no" class="form-control" value="{{ $purchase->purchase_no }}" readonly>
+                                        <input type="text" class="form-control" value="{{ $order->order_no }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-12 mt-3">
+                                    <label for="files" class="col-form-label">Uploaded File</label>
+                                    @if ($order->files)
+                                        <p>Current File: <a href="{{ asset('storage/' . $order->files) }}" target="_blank"><i class="fas fa-file-download"></i></a></p>
+                                    @else
+                                        <p>No file uploaded</p>
+                                    @endif
+                                </div>
+                                <div class="col-12">
+                                    <label for="date" class="col-sm-4 col-form-label">Remarks</label>
+                                    <div class="col-sm-12">
+                                        <input type="text" name="remarks" class="form-control" value="{{ $order->remarks }}">
                                     </div>
                                 </div>
                             </div>
@@ -62,7 +76,7 @@
                                 <thead>
                                 <tr class="text-center">
                                     <th style="width: 20px">No</th>
-                                    <th>Item</th>
+                                    <th>Service</th>
                                     <th>Quantity</th>
                                     <th>Unit Price</th>
                                     <th>Total</th>
@@ -72,10 +86,10 @@
                                 @php
                                     $i=0;
                                 @endphp
-                                @foreach($purchase->details as $detail)
+                                @foreach($order->details as $detail)
                                     <tr>
                                         <td class="text-center">{{ ++$i }}</td>
-                                        <td>{{ $detail->items->name ?? '-' }}</td>
+                                        <td>{{ $detail->services->name ?? '-' }}</td>
                                         <td class="text-center">{{ $detail->quantity ?? '-' }}</td>
                                         <td class="text-right">{{ number_format($detail->unit_price, 2) ?? '-' }}</td>
                                         <td class="text-right">{{ number_format($detail->total, 2) ?? '-' }}</td>
@@ -83,24 +97,25 @@
                                 @endforeach
                                 <tr>
                                     <td colspan="4" ><strong>Total Amount</strong></td>
-                                    <td class="text-right">{{ number_format($purchase->total_amount, 2) }}</td>
+                                    <td class="text-right">{{ number_format($order->total_amount, 2) }}</td>
                                 </tr>
                                 <tr>
                                     <td colspan="4"><strong>Discount</strong></td>
-                                    <td class="text-right">{{ number_format($purchase->discount, 2) }}</td>
+                                    <td class="text-right">{{ number_format($order->discount, 2) }}</td>
                                 </tr>
                                 <tr>
                                     <td colspan="4"><strong>Net Amount</strong></td>
-                                    <td class="text-right">{{ number_format($purchase->total_amount - ($purchase->total_amount * $purchase->discount/100), 2) }}</td>
+                                    <td class="text-right">{{ number_format($order->total_amount - ($order->total_amount * $order->discount/100), 2) }}</td>
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col-md-6 text-right">
-                            @if($purchase->status != 0)
+                        <div class="col-md-12 text-center">
+                            @if($order->status != 0)
                                 <button type="submit" name="approval" value="approve" class="btn btn-sm btn-outline-success">Approve</button>
+                                <button type="submit" name="approval" value="Forward" class="btn btn-sm btn-outline-warning">Forward</button>
                                 <button type="submit" name="approval" value="reject" class="btn btn-sm btn-outline-danger"
-                                        @if($purchase->status == 2) disabled @endif>Reject</button>
+                                        @if($order->status == 2) disabled @endif>Reject</button>
                             @endif
                         </div>
                     </form>

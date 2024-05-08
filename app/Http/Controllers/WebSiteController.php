@@ -10,4 +10,8 @@ class WebSiteController extends Controller
     {
         return view('webpages.index');
     }
+    public function digitalPrint()
+    {
+        return view('webpages.digital-offset-printing');
+    }
 }

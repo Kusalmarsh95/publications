@@ -6,19 +6,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
+    <meta name="description" content="One stop shop for your all printing, copying &amp; stationery needs in Colombo">
     <meta name="keywords" content="">
-    <link rel="icon" href="http://alston.lk/favicon.ico" type="image/x-icon" />
-    <title>Alston | Digital Offset Printing</title>
-
-    <meta property="og:url"           content="http://alston.lk/our-services/digital-offset-printing/" />
-    <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="Digital Offset Printing" />
-    <meta property="og:description"   content="" />
-
-    <meta name='robots' content='max-image-preview:large' />
-    <link rel='dns-prefetch' href='//www.google.com' />
-    <link rel='stylesheet' id='wp-block-library-css' href='http://alston.lk/wp-includes/css/dist/block-library/style.min.css?ver=6.5.2' type='text/css' media='all' />
+    <link rel="icon" href="{{ asset('images/slma-flag.jpg') }}" type="image/x-icon" />
+    <title>SLMA | Printing, Copying & Stationery in Sri Lanka Army</title>
     <style id='classic-theme-styles-inline-css' type='text/css'>
         /*! This file is auto-generated */
         .wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
@@ -33,10 +24,7 @@
     <link rel='stylesheet' id='cpsh-shortcodes-css' href='http://alston.lk/wp-content/plugins/column-shortcodes//assets/css/shortcodes.css?ver=1.0.1' type='text/css' media='all' />
     <link rel='stylesheet' id='contact-form-7-css' href='http://alston.lk/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=5.5.6' type='text/css' media='all' />
     <link rel='stylesheet' id='wp-pagenavi-css' href='http://alston.lk/wp-content/plugins/wp-pagenavi/pagenavi-css.css?ver=2.70' type='text/css' media='all' />
-    <link rel="https://api.w.org/" href="http://alston.lk/wp-json/" /><link rel="alternate" type="application/json" href="http://alston.lk/wp-json/wp/v2/pages/442" /><link rel='shortlink' href='http://alston.lk/?p=442' />
-    <link rel="alternate" type="application/json+oembed" href="http://alston.lk/wp-json/oembed/1.0/embed?url=http%3A%2F%2Falston.lk%2Four-services%2Fdigital-offset-printing%2F" />
-    <link rel="alternate" type="text/xml+oembed" href="http://alston.lk/wp-json/oembed/1.0/embed?url=http%3A%2F%2Falston.lk%2Four-services%2Fdigital-offset-printing%2F&#038;format=xml" />
-
+    <link rel="https://api.w.org/" href="http://alston.lk/wp-json/" />
     <!-- Bootstrap -->
     <link href="http://alston.lk/wp-content/themes/rukizone_alston/css/bootstrap.css" rel="stylesheet">
     <link href="http://alston.lk/wp-content/themes/rukizone_alston/css/BootstrapXL.css" rel="stylesheet">
@@ -53,13 +41,9 @@
     <link rel="stylesheet" type="text/css" media="all" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
     <!-- Main -->
-    <link rel="stylesheet" type="text/css" media="all" href="http://alston.lk/wp-content/themes/rukizone_alston/style.css?ver=777262444" />
+    <link rel="stylesheet" type="text/css" media="all" href="http://alston.lk/wp-content/themes/rukizone_alston/style.css?ver=1285281228" />
     <link rel="stylesheet" type="text/css" href="http://alston.lk/wp-content/themes/rukizone_alston/css/animate.css">
     <link rel="stylesheet" type="text/css" href="http://alston.lk/wp-content/themes/rukizone_alston/css/search.css">
-
-    <!--<link rel="stylesheet" type="text/css" media="all" href="http://alston.lk/wp-content/themes/rukizone_alston/css/owl.carousel.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="http://alston.lk/wp-content/themes/rukizone_alston/css/owl.transitions.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="http://alston.lk/wp-content/themes/rukizone_alston/css/owl.theme.css" />-->
 
     <link rel="stylesheet" type="text/css" media="all" href="http://alston.lk/wp-content/themes/rukizone_alston/css/yamm.css" />
 
@@ -69,7 +53,6 @@
     <script src="http://alston.lk/wp-content/themes/rukizone_alston/js/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="http://alston.lk/wp-content/themes/rukizone_alston/lib/owlcarousel/owl.carousel.js"></script>
     <script type="text/javascript" src="http://alston.lk/wp-content/themes/rukizone_alston/lib/owlcarousel/plugins/owl.carousel2.thumbs.min.js"></script>
-    <!--<script src="http://alston.lk/wp-content/themes/rukizone_alston/js/owl.carousel.min.js"></script>-->
     <script src="http://alston.lk/wp-content/themes/rukizone_alston/js/bootstrap.min.js"></script>
     <script src="http://alston.lk/wp-content/themes/rukizone_alston/js/jquery.easing.1.3.js"></script>
     <script src="http://alston.lk/wp-content/themes/rukizone_alston/js/bg-effect.js"></script>
@@ -92,7 +75,7 @@
 
     <script type="text/javascript" src="http://alston.lk/wp-content/themes/rukizone_alston/js/jquery.validate.min.js"></script>
     <script type="text/javascript" src="http://alston.lk/wp-content/themes/rukizone_alston/js/functions-newsletter.js"></script>
-    <script type="text/javascript" src="http://alston.lk/wp-content/themes/rukizone_alston/js/functions-site.js?ver=1507462737"></script>
+    <script type="text/javascript" src="http://alston.lk/wp-content/themes/rukizone_alston/js/functions-site.js?ver=1832161976"></script>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-303652-31"></script>
     <script>
@@ -108,38 +91,6 @@
 
 
 <div id="header-wrapper">
-
-    <!-- top bar -->
-    <div id="header-top">
-        <div class="container">
-            <div class="row">
-                <!--<div id="search" class="search-top hidden-xs">
-                        <form class="navbar-form" id="searchform" action="/" role="search">
-                            <div class="form-group">
-                              <input type="text" class="" placeholder="search" value="" name="s" id="s">
-                            </div>
-                            <button type="submit" id="searchsubmit" class="btn btn-default hidden-xl hidden-lg hidden-md hidden-sm hidden-xs"><i class="fa fa-search" aria-hidden="true"></i></button>
-                        </form>
-                </div>-->
-                <!--<div id="morphsearchwrapper" class="search-top">
-                    <div id="morphsearch" class="morphsearch hidden-xl hidden-lg hidden-md hidden-sm">
-                        <form class="morphsearch-form" action="/" role="search">
-                            <input class="morphsearch-input" type="search" value="" name="s" id="morphsearch-s" placeholder="search"/>
-                            <button class="morphsearch-submit" type="submit" id="morphsearchsubmit">Search</button>
-                        </form>
-                        <span class="morphsearch-close"></span>
-                    </div>
-                </div>-->
-                <div class="hotline">
-                    Hotline  :  <a href="tel:+94112436580">+94 (0) 11 2 436 580</a>                    </div>
-                <div class="social-media">
-                    <a href="https://www.facebook.com/alstonstationery" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>                    </div>
-
-            </div><!-- /row -->
-        </div>
-    </div>
-    <!-- /top bar -->
-
     <!-- Header -->
     <header id="header">
         <div class="container">
@@ -147,12 +98,9 @@
 
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 nav-holder">
                     <nav class="navbar navbar-default museo100 navbar-modified yamm">
-
-
                         <div class="navbar-header">
-                            <a class="navbar-brand" href="/">
-                                <img alt="Alston" src="http://alston.lk/wp-content/themes/rukizone_alston/images/alston/alston-logo.png" class="square">
-                                <img alt="Alston" src="http://alston.lk/wp-content/themes/rukizone_alston/images/alston/alston-logo.png" class="horizontal">
+                            <a class="navbar-brand" href="/shop-index">
+                                <img src="{{ asset('images/slma-flag.jpg') }}" class="img-circle elevation-2" alt="Logo" style="width: 60px; height: 60px;">
                             </a>
                             <div class="row">
                                 <div class="col-xs-12 nav-button-holder">
@@ -170,46 +118,24 @@
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <div>
 
-                                <ul id="menu-top_nav" class="nav navbar-nav"><li id="menu-item-5" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-5"><a title="Home" href="http://alston.lk/">Home</a></li>
-                                    <li id="menu-item-2761" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2761"><a title="Shop Online" href="https://shop.alston.lk/">Shop Online</a></li>
-                                    <li id="menu-item-2160" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2160"><a title="New Arrivals" href="http://alston.lk/new-arrivals/">New Arrivals</a></li>
-                                    <li id="menu-item-415" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-415 dropdown"><a title="Stationery" href="http://alston.lk/stationery/" aria-haspopup="true">Stationery <span class="caret"></span></a>
+                                <ul id="menu-top_nav" class="nav navbar-nav"><li id="menu-item-5" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-5 active"><a title="Home" href="/shop-index">Home</a></li>
+                                    <li id="menu-item-415" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-415"><a title="About Us" href="/shop-index">Stationery</a></li>
+                                    <li id="menu-item-475" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-475 dropdown"><a title="Our Services" href="/shop-index" aria-haspopup="true">Our Services <span class="caret"></span></a>
                                         <ul role="menu" class=" dropdown-menu">
-                                            <li id="menu-item-1465" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1465"><a title="Featured Products" href="http://alston.lk/stationery/featured-products/">Featured Products</a></li>
-                                            <li id="menu-item-419" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-419"><a title="Office Stationery" href="http://alston.lk/stationery/office-stationery/">Office Stationery</a></li>
-                                            <li id="menu-item-420" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-420"><a title="School Stationery" href="http://alston.lk/stationery/school-stationery/">School Stationery</a></li>
-                                            <li id="menu-item-421" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-421"><a title="Architectural Supplies" href="http://alston.lk/stationery/architectural-supplies/">Architectural Supplies</a></li>
-                                            <li id="menu-item-422" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-422"><a title="Computer Supplies" href="http://alston.lk/stationery/computer-supplies/">Computer Supplies</a></li>
-                                            <li id="menu-item-1328" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1328"><a title="Art Supplies" href="http://alston.lk/stationery/art-supplies/">Art Supplies</a></li>
-                                            <li id="menu-item-1761" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1761"><a title="Home Stationery" href="http://alston.lk/stationery/home-stationery/">Home Stationery</a></li>
+                                            <li id="menu-item-512" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-512"><a title="Digital Offset Printing" href="{{ route('digital-offset') }}">Digital Offset Printing</a></li>
+                                            <li id="menu-item-511" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-511"><a title="Photocopying" href="{{ route('digital-offset') }}">Photocopying</a></li>
+                                            <li id="menu-item-508" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-508"><a title="Scanning" href="{{ route('digital-offset') }}">Scanning</a></li>
+                                            <li id="menu-item-507" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-507"><a title="Laminating" href="{{ route('digital-offset') }}">Laminating</a></li>
+                                            <li id="menu-item-506" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-506"><a title="Binding" href="{{ route('digital-offset') }}">Binding</a></li>
+                                            <li id="menu-item-477" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-477"><a title="Graphic Design" href="{{ route('digital-offset') }}">Graphic Design</a></li>
+                                            <li id="menu-item-476" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-476"><a title="Computer Related Services" href="{{ route('digital-offset') }}">Computer Related Services</a></li>
                                         </ul>
                                     </li>
-                                    <li id="menu-item-475" class="menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor current-menu-ancestor current-menu-parent current-page-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-475 dropdown"><a title="Our Services" href="http://alston.lk/our-services/" aria-haspopup="true">Our Services <span class="caret"></span></a>
-                                        <ul role="menu" class=" dropdown-menu">
-                                            <li id="menu-item-512" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-442 current_page_item menu-item-512 active"><a title="Digital Offset Printing" href="http://alston.lk/our-services/digital-offset-printing/">Digital Offset Printing</a></li>
-                                            <li id="menu-item-511" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-511"><a title="Photocopying" href="http://alston.lk/our-services/photocopying/">Photocopying</a></li>
-                                            <li id="menu-item-510" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-510"><a title="AutoCAD Plotting" href="http://alston.lk/our-services/autocad-plotting/">AutoCAD Plotting</a></li>
-                                            <li id="menu-item-509" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-509"><a title="Plan Copying &#038; Blue Printing" href="http://alston.lk/our-services/plan-copying-blue-printing/">Plan Copying &#038; Blue Printing</a></li>
-                                            <li id="menu-item-508" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-508"><a title="Scanning" href="http://alston.lk/our-services/scanning/">Scanning</a></li>
-                                            <li id="menu-item-507" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-507"><a title="Laminating" href="http://alston.lk/our-services/laminating/">Laminating</a></li>
-                                            <li id="menu-item-506" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-506"><a title="Binding" href="http://alston.lk/our-services/binding/">Binding</a></li>
-                                            <li id="menu-item-505" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-505"><a title="Seal Making" href="http://alston.lk/our-services/seal-making/">Seal Making</a></li>
-                                            <li id="menu-item-515" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-515"><a title="ID Card Printing" href="http://alston.lk/our-services/idcard-printing/">ID Card Printing</a></li>
-                                            <li id="menu-item-504" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-504"><a title="Flex Printing" href="http://alston.lk/our-services/flex-printing/">Flex Printing</a></li>
-                                            <li id="menu-item-503" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-503"><a title="Document Finishing Services" href="http://alston.lk/our-services/document-finishing-services/">Document Finishing Services</a></li>
-                                            <li id="menu-item-477" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-477"><a title="Graphic Design" href="http://alston.lk/our-services/graphic-design/">Graphic Design</a></li>
-                                            <li id="menu-item-476" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-476"><a title="Computer Related Services" href="http://alston.lk/our-services/computer-related-services/">Computer Related Services</a></li>
-                                        </ul>
-                                    </li>
-                                    <li id="menu-item-413" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-413"><a title="About Us" href="http://alston.lk/about-us/">About Us</a></li>
-                                    <li id="menu-item-412" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-412"><a title="Locations" href="http://alston.lk/locations/">Locations</a></li>
-                                    <li id="menu-item-1433" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1433"><a title="News &amp; Events" href="http://alston.lk/news/">News &#038; Events</a></li>
-                                    <li id="menu-item-411" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-411"><a title="Careers" href="http://alston.lk/careers/">Careers</a></li>
-                                    <li id="menu-item-410" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-410"><a title="Contact Us" href="http://alston.lk/contact-us/">Contact Us</a></li>
+                                    <li id="menu-item-413" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-413"><a title="About Us" href="/shop-index">About Us</a></li>
+                                    <li id="menu-item-410" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-410"><a title="Contact Us" href="/shop-index">Contact Us</a></li>
+                                    <li id="menu-item-412" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-412"><a title="Login" href="{{route('login')}}">Login</a></li>
+
                                 </ul>
-                                <!--<div class="component-holder">
-                                    <a  href="/contact-us/" class="btn btn-default navbar-btn">Make Payment</a>
-                                </div>-->
 
                             </div>
                         </div>
@@ -228,34 +154,9 @@
 </div>
 
 
-
-<div id="slider-wrapper">
-
-    <div id="page-carousel" class="owl-carousel owl-theme">
-
-
-        <div class="item" data-position="0">
-            <img src="http://alston.lk/wp-content/uploads/2018/01/alston-inner-page-banner-digital-offset.jpg" alt="">
-        </div>
-    </div>
-
-    <script>
-        jQuery(document).ready(function($) {
-            // pagecarousel.trigger('owl.stop');
-        });
-    </script>
-
-
-</div>
 <div id="breadcrumb-holder">
     <div class="container">
         <div class="row">
-
-            <div class="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12">
-                <div class="breadcrumb">
-                    <!-- Breadcrumb NavXT 6.6.0 -->
-                    <span property="itemListElement" typeof="ListItem"><a property="item" typeof="WebPage" title="Go to Alston." href="http://alston.lk" class="home"><span property="name">Alston</span></a><meta property="position" content="1"></span> &gt; <span property="itemListElement" typeof="ListItem"><a property="item" typeof="WebPage" title="Go to Our Services." href="http://alston.lk/our-services/" class="post post-page"><span property="name">Our Services</span></a><meta property="position" content="2"></span> &gt; <span property="itemListElement" typeof="ListItem"><a property="item" typeof="WebPage" title="Go to Digital Offset Printing." href="http://alston.lk/our-services/digital-offset-printing/" class="post post-page current-item"><span property="name">Digital Offset Printing</span></a><meta property="position" content="3"></span>                            </div>
-            </div>
 
         </div>
     </div>
@@ -273,21 +174,15 @@
                 </div>
 
                 <div id="side-nav">
-                    <ul id="menu-our-services" class=""><li id="menu-item-694" class="menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor current-menu-ancestor current-menu-parent current-page-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-694"><a href="http://alston.lk/our-services/">Our Services</a>
+                    <ul id="menu-our-services" class=""><li id="menu-item-694" class="menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor current-menu-ancestor current-menu-parent current-page-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-694"><a href="/shop-index">Our Services</a>
                             <ul class="sub-menu">
-                                <li id="menu-item-707" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-442 current_page_item menu-item-707"><a href="http://alston.lk/our-services/digital-offset-printing/" aria-current="page">Digital Offset Printing</a></li>
-                                <li id="menu-item-706" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-706"><a href="http://alston.lk/our-services/photocopying/">Photocopying</a></li>
-                                <li id="menu-item-705" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-705"><a href="http://alston.lk/our-services/autocad-plotting/">AutoCAD Plotting</a></li>
-                                <li id="menu-item-704" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-704"><a href="http://alston.lk/our-services/plan-copying-blue-printing/">Plan Copying &#038; Blue Printing</a></li>
-                                <li id="menu-item-703" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-703"><a href="http://alston.lk/our-services/scanning/">Scanning</a></li>
-                                <li id="menu-item-702" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-702"><a href="http://alston.lk/our-services/laminating/">Laminating</a></li>
-                                <li id="menu-item-701" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-701"><a href="http://alston.lk/our-services/binding/">Binding</a></li>
-                                <li id="menu-item-700" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-700"><a href="http://alston.lk/our-services/seal-making/">Seal Making</a></li>
-                                <li id="menu-item-695" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-695"><a href="http://alston.lk/our-services/idcard-printing/">ID Card Printing</a></li>
-                                <li id="menu-item-699" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-699"><a href="http://alston.lk/our-services/flex-printing/">Flex Printing</a></li>
-                                <li id="menu-item-698" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-698"><a href="http://alston.lk/our-services/document-finishing-services/">Document Finishing Services</a></li>
-                                <li id="menu-item-697" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-697"><a href="http://alston.lk/our-services/graphic-design/">Graphic Design</a></li>
-                                <li id="menu-item-696" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-696"><a href="http://alston.lk/our-services/computer-related-services/">Computer Related Services</a></li>
+                                <li id="menu-item-707" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-442 current_page_item menu-item-707"><a href="{{ route('digital-offset') }}" aria-current="page">Digital Offset Printing</a></li>
+                                <li id="menu-item-706" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-706"><a href="{{ route('digital-offset') }}">Photocopying</a></li>
+                                <li id="menu-item-703" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-703"><a href="{{ route('digital-offset') }}">Scanning</a></li>
+                                <li id="menu-item-702" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-702"><a href="{{ route('digital-offset') }}">Laminating</a></li>
+                                <li id="menu-item-701" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-701"><a href="{{ route('digital-offset') }}">Binding</a></li>
+                                <li id="menu-item-697" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-697"><a href="{{ route('digital-offset') }}">Graphic Design</a></li>
+                                <li id="menu-item-696" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-696"><a href="{{ route('digital-offset') }}">Computer Related Services</a></li>
                             </ul>
                         </li>
                     </ul>                    </div>
@@ -303,7 +198,7 @@
 
                 <div class="wow fadeInUp" data-wow-delay="0.2s">
 
-                    <p>Digital Offset Printing in the ideal solution to your short-term and urgent printing needs. It not only allows you to print what you need fast, but you can also get the output in full colour or black and white. Alston Stationery is one of the most experienced and reliable suppliers of Digital Offset Printing in Sri Lanka.</p>
+                    <p>Digital Offset Printing in the ideal solution to your short-term and urgent printing needs. It not only allows you to print what you need fast, but you can also get the output in full colour or black and white. SLMA Stationery is one of the most experienced and reliable suppliers of Digital Offset Printing in Sri Lanka Army.</p>
                     <p>We can help you print a wide range of items including:</p>
                     <ul>
                         <li>Business Cards</li>
@@ -337,65 +232,12 @@
 
     <div id="footer-inner">
 
-
-        <div id="footer-about">
-
-            <div class="container">
-                <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2">
-
-                    <div class="footer-about-inner">
-                        <div>
-                            <div id="footer-logo">
-                                <img class="wow fadeInUp" alt="Alston" src="http://alston.lk/wp-content/themes/rukizone_alston/images/alston/alston-logo-footer.png">
-                            </div>
-
-                            <div class="wow fadeInUp">
-                                <p>So the next time you're looking for a reliable supplier of quality stationery products in Sri Lanka, Alston Stationery (Pvt) Ltd. should be your automatic choice. Need we say more?</p>
-                            </div>
-
-                            <div class="social-media wow fadeInUp">
-                                <a href="https://www.facebook.com/alstonstationery" class="facebook" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                <a href="https://www.instagram.com/alstonstationery" class="instagram" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>                                </div>
-
-                            <div class="newsletter-holder">
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-
-        </div>
-
-
-
-
         <div id="footer-bottom">
             <div class="container">
 
                 <div class="row">
                     <div class="col-lg-9 col-md-9">
-                        <nav id="footer-nav">
-                            <ul id="menu-footer_nav" class=""><li id="menu-item-241" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-241"><a href="http://alston.lk/">Home</a></li>
-                                <li id="menu-item-887" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-887"><a href="http://alston.lk/new-arrivals/">New Arrivals</a></li>
-                                <li id="menu-item-888" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-888"><a href="http://alston.lk/stationery/">Stationery</a></li>
-                                <li id="menu-item-889" class="menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor menu-item-889"><a href="http://alston.lk/our-services/">Our Services</a></li>
-                                <li id="menu-item-890" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-890"><a href="http://alston.lk/about-us/">About Us</a></li>
-                                <li id="menu-item-891" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-891"><a href="http://alston.lk/locations/">Locations</a></li>
-                                <li id="menu-item-892" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-892"><a href="http://alston.lk/news-events/">News &#038; Events</a></li>
-                                <li id="menu-item-893" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-893"><a href="http://alston.lk/careers/">Careers</a></li>
-                                <li id="menu-item-894" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-894"><a href="http://alston.lk/contact-us/">Contact Us</a></li>
-                            </ul>
-                        </nav>
-                        <div class="wow fadeInLeft"><span class="copyright">Copyright &copy; Alston Stationery | All Rights Reserved</span>  </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-3">
-                        <div class="web-developer wow fadeInRight">
-                            <a href="http://rukizone.com/" target="_blank">A RukiZone Site</a>
-                        </div>
+                        <div class="wow fadeInLeft"><span class="copyright">Copyright &copy; Sri Lanka Military Academy | All Rights Reserved</span>  </div>
                     </div>
                 </div>
 

@@ -18,4 +18,9 @@ class Order extends Model
     {
         return $this->hasMany(OrderDetail::class);
     }
+
+    public function assigns()
+    {
+        return $this->hasMany(OrderAssign::class, 'order_id', 'id');
+    }
 }

@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
+use App\Models\Service;
+use App\Models\User;
+use App\Models\Worker;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class WebSiteController extends Controller
 {
@@ -14,4 +19,6 @@ class WebSiteController extends Controller
     {
         return view('webpages.digital-offset-printing');
     }
+
+
 }

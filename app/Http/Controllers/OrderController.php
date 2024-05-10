@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\Order;
+use App\Models\OrderAssign;
 use App\Models\OrderDetail;
 use App\Models\Service;
+use App\Models\User;
 use App\Models\Worker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +19,16 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::with('customer')->get();
+
+        foreach ($orders as $order) {
+            $latestAssignment = $order->assigns->sortByDesc('created_at')->first();
+            if (!$latestAssignment){
+                $order->assignee = 'Not Assigned';
+            }else {
+                $order->assignee = $latestAssignment->fwd_to;
+            }
+        }
+
         return view('orders.index',compact('orders'));
     }
 
@@ -155,15 +167,20 @@ class OrderController extends Controller
         $customers = Customer::select('id', 'name')->get();
         $workers = Worker::select('id', 'name')->get();
         $services = Service::all();
+        $users = User::all();
 
         $order = Order::with('details')->find($id);
+        $note = $order->assigns->sortByDesc('created_at')->first();
+
         if ($order->status == 0){
             return redirect()->route('orders.index')->with('success', 'Already Completed, do not have permission');
         }
-        return view('orders.show', compact('order','customers', 'services', 'workers'));
+        return view('orders.show', compact('order','customers',
+            'services', 'workers', 'users', 'note'));
     }
     public function approve(Request $request, $id)
     {
+
         $order = Order::findOrFail($id);
         if ($request->input('approval') == "approve"){
             $order->status = '0';
@@ -177,27 +194,57 @@ class OrderController extends Controller
                     $service->save();
                 }
             }
+            $validatedAssign = $request->validate([
+                'fwd_to' => 'required',
+            ]);
+            $validatedAssign['order_id'] = $order->id;
+            $validatedAssign['fwd_by'] = Auth::user()->id;
+            $validatedAssign['notes'] = $request->input('notes');
+
+            OrderAssign::create($validatedAssign);
 
             return redirect()->route('orders.index')->with('success', 'Order approved successfully');
 
-        } elseif ($request->input('approval') == "reject"){
-            $purchase->status = '2';
-            $purchase->save();
+        } elseif ($request->input('approval') == "forward"){
 
-            return redirect()->route('purchases.index')->with('success', 'Purchase rejected successfully');
+            $validatedAssign = $request->validate([
+                'fwd_to' => 'required',
+            ]);
+            $validatedAssign['order_id'] = $order->id;
+            $validatedAssign['fwd_by'] = Auth::user()->id;
+            $validatedAssign['notes'] = $request->input('notes');
+
+            OrderAssign::create($validatedAssign);
+
+            return redirect()->route('orders.index')->with('success', 'Order forwarded successfully');
+
+        } elseif ($request->input('approval') == "reject"){
+            $order->status = '2';
+            $order->save();
+            $validatedAssign = $request->validate([
+                'fwd_to' => 'required',
+            ]);
+            $validatedAssign['order_id'] = $order->id;
+            $validatedAssign['fwd_by'] = Auth::user()->name;
+            $validatedAssign['notes'] = $request->input('notes');
+
+            OrderAssign::create($validatedAssign);
+
+            return redirect()->route('order.index')->with('success', 'Order rejected successfully');
         } else {
-            return redirect()->route('purchases.index')->with('success', 'Oops!, Something went wrong');
+            return redirect()->route('orders.index')->with('success', 'Oops!, Something went wrong');
         }
+
     }
 
     public function destroy($id)
     {
-        $purchase = Purchase::findOrFail($id);
-        $purchase->details()->delete();
+        $order = Order::findOrFail($id);
+        $order->details()->delete();
 
-        $purchase->delete();
+        $order->delete();
 
-        return redirect()->route('purchases.index')
-            ->with('success', 'Purchase deleted successfully');
+        return redirect()->route('orders.index')
+            ->with('success', 'Order deleted successfully');
     }
 }

@@ -51,6 +51,9 @@
                 <!-- /.col -->
             </div>
         </form>
+        <p class="mb-1">
+            <a href="{{ route('customer.register') }}">{{ __('Register as Customer') }}</a>
+        </p>
 
         @if (Route::has('password.request'))
             <p class="mb-1">

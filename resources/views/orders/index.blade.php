@@ -40,6 +40,7 @@
                     <th>Customer</th>
                     <th>Date</th>
                     <th>Status</th>
+                    <th>Assignee</th>
                     <th>Amount</th>
                     <th class="text-center" style="width: 120px">Action</th>
                 </tr>
@@ -65,7 +66,7 @@
                                 -
                             @endif
                         </td>
-
+                        <td>{{ $order->assignee }}</td>
                         <td>{{ number_format($order->total_amount,2) ?? '-' }}</td>
                         <td class="text-center">
                             <a class="btn" href="{{ route('orders.show', $order->id) }}">

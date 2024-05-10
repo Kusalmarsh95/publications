@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class CustomerController extends Controller
 {
@@ -35,6 +37,40 @@ class CustomerController extends Controller
 
         return redirect()->route('customers.index')
             ->with('success', 'Customer created successfully');
+    }
+    public function register()
+    {
+        return view('customers.register');
+    }
+    public function customerStore(Request $request)
+    {
+
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|same:password_confirmation',
+            'mobile' => 'required',
+            'address' => 'required',
+            'type' => 'nullable',
+            'account_no' => 'nullable',
+            'bank' => 'nullable',
+            'bank_branch' => 'nullable',
+        ]);
+
+        Customer::create([
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'mobile' => $validatedData['mobile'],
+            'address' => $validatedData['address'],
+        ]);
+        User::create([
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'password' => Hash::make($request->password)
+        ]);
+
+        return redirect()->route('login')
+            ->with('success', 'Created successfully');
     }
 
     public function edit($id)

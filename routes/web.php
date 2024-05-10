@@ -82,10 +82,14 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('issues', IssueController::class);
     Route::post('issues/{id}/approve', [IssueController::class, 'approve'])->name('issues.approve');
     Route::resource('orders', OrderController::class);
-    Route::post('orders/{id}/approve', [OrderController::class, 'approve'])->name('orders.approve');
+    Route::put('orders/{id}/approve', [OrderController::class, 'approve'])->name('orders.approve');
 
-    Route::get('shop-index', [WebSiteController::class, 'index'])->name('shop-index');
-    Route::get('digital-offset-printing', [WebSiteController::class, 'digitalPrint'])->name('digital-offset');
 
     Route::match(['get', 'post'], '/botman', [BotManController::class, 'handle']);
 });
+
+Route::get('customer-register', [CustomerController::class, 'register'])->name('customer.register');
+Route::post('customer-store', [CustomerController::class, 'customerStore'])->name('customer-store');
+Route::get('shop-index', [WebSiteController::class, 'index'])->name('shop-index');
+Route::get('digital-offset-printing', [WebSiteController::class, 'digitalPrint'])->name('digital-offset');
+//Route::get('customer-orders', [WebSiteController::class, 'orders'])->name('customer-orders');

@@ -229,7 +229,7 @@
                 var selectedserviceId = $(this).val();
                 var unitPriceInput = $(this).closest('.row').find('.unit_price');
                 if (servicePrices.hasOwnProperty(selectedserviceId)) {
-                    // Format the unit price as number with two decimal places and comma separators
+
                     var formattedPrice = parseFloat(servicePrices[selectedserviceId]).toLocaleString('en-US', {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2

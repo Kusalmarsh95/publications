@@ -65,12 +65,6 @@
                                         <input type="text" name="email" class="form-control">
                                     </div>
                                 </div>
-{{--                                <div class="col-6 row">--}}
-{{--                                    <label for="shop_name" class="col-sm-4 col-form-label">Shop Name</label>--}}
-{{--                                    <div class="col-sm-8">--}}
-{{--                                        <input type="text" name="shop_name" class="form-control">--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
                             </div>
                             <div class="form-group row">
                                 <div class="col-6 row">
@@ -104,28 +98,6 @@
                                 </div>
                             </div>
                         </div>
-    {{--                        <div class="card-body">--}}
-    {{--                            <h3 class="card-title">Customer Image</h3>--}}
-
-    {{--                            <div class="small font-italic text-muted mb-2">--}}
-    {{--                                JPG or PNG no larger than 2 MB--}}
-    {{--                            </div>--}}
-
-    {{--                            <input--}}
-    {{--                                type="file"--}}
-    {{--                                accept="image/*"--}}
-    {{--                                id="image"--}}
-    {{--                                name="customer_image"--}}
-    {{--                                class="form-control @error('customer_image') is-invalid @enderror"--}}
-    {{--                                onchange="previewImage();"--}}
-    {{--                            >--}}
-
-    {{--                            @error('customer_image')--}}
-    {{--                            <div class="invalid-feedback">--}}
-    {{--                                {{ $message }}--}}
-    {{--                            </div>--}}
-    {{--                            @enderror--}}
-    {{--                        </div>--}}
                         <div class="col-md-6 text-right">
                             <button type="submit" class="btn btn-outline-warning btn-sm">Submit</button>
                         </div>

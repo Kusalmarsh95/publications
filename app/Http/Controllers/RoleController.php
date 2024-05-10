@@ -30,14 +30,15 @@ class RoleController extends Controller
     public function create()
     {
         // HARDCODED module names
-        $moduleNames = ['administration', 'master-data'];
+        $moduleNames = ['administration', 'master-data', 'stock-management', 'publication-management'];
 
         // Create an array to hold modules and their permissions
         $moduleWisePermissions = [
             'administration' => array(),
             'master-data' => array(),
-//            'memberships' => array(),
-//            'nominees' => array(),
+            'memberships' => array(),
+            'stock-management' => array(),
+            'publication-management' => array(),
 //            'bulk' => array(),
 //            'withdrawals' => array(),
 //            'loans' => array(),
@@ -94,14 +95,14 @@ class RoleController extends Controller
             ->all();
 
         // HARDCODED module names
-        $moduleNames = ['administration', 'master-data'];
+        $moduleNames = ['administration', 'master-data', 'stock-management', 'publication-management'];
 
         // Create an array to hold modules and their permissions
         $moduleWisePermissions = [
             'administration' => array(),
             'master-data' => array(),
-//            'memberships' => array(),
-//            'nominees' => array(),
+            'stock-management' => array(),
+            'publication-management' => array(),
 //            'bulk' => array(),
 //            'withdrawals' => array(),
 //            'loans' => array(),

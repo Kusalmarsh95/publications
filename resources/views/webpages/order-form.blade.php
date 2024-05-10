@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,11 +87,10 @@
 
 </head>
 
-<body class="site home">
+<body class="site page">
 
 
 <div id="header-wrapper">
-
     <!-- Header -->
     <header id="header">
         <div class="container">
@@ -133,7 +133,6 @@
                                     </li>
                                     <li id="menu-item-413" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-413"><a title="About Us" href="/shop-index">About Us</a></li>
                                     <li id="menu-item-410" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-410"><a title="Contact Us" href="/shop-index">Contact Us</a></li>
-{{--                                    <li id="menu-item-411" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-411"><a title="Contact Us" href="{{ route('customer-orders') }}">Make Order</a></li>--}}
                                     <li id="menu-item-412" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-412"><a title="Login" href="{{route('login')}}">Login</a></li>
 
                                 </ul>
@@ -155,310 +154,71 @@
 </div>
 
 
-<div id="introduction">
-    <div class="container fullwidth">
-        <div class="row">
-            <div class="col-lg-12 col-md-12">
-                <div id="introduction-inner" class="intro-text intro-col">
-                    <div class="title wow fadeInUp">
-                        <h1>Welcome to Publications of SLMA</h1>
-                    </div>
-                    <div class="text wow fadeInUp">
-                        Newly introduced, Publications of SLMA has been one of the most trusted and reliable suppliers of quality stationery products and also one of the leading print and publication service providers.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div id="slider-wrapper">
-
-    <div id="top-carousel" class="owl-carousel owl-theme">
-
-        <div class="item" data-position="0">
-            <img src="{{ asset('images/printer-01.jpg') }}" alt="">
-        </div>
-        <div class="item" data-position="0">
-            <img src="{{ asset('images/printer-02.jpg') }}" alt="">
-        </div>
-    </div>
-
-    <div id="slider-content-box" class="wow fadeInLeft"></div>
-
-</div>
-
-
-<section id="stationery">
-
-    <div class="container">
-
-        <div class="row section-title">
-            <div class="col-lg-12">
-                <h2 class="wow fadeInUp">Stationery you can buy</h2>
-                <div class="wow fadeInUp">
-                    <p>Small amount of stationery supplies to individuals available at very low prices.</p>
-                    </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="stationery-carousel-wrapper">
-        <div class="container">
-
-            <div class="row stationery-products-block wow fadeInUp">
-                <div class="col-lg-12">
-                    <div id="stationery-carousel" class="owl-carousel owl-theme">
-                        <div>
-                            <div class="stationery-item">
-                                <div class="img-holder">
-                                    <a href="/shop-index">
-                                        <img src="{{ asset('images/notebooks.jpg') }}" alt="Books">
-                                    </a>
-                                </div>
-                                <div class="details">
-                                    <h3><a href="/shop-index">Books</a></h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="stationery-item">
-                                <div class="img-holder">
-                                    <a href="/shop-index">
-                                        <img src="{{ asset('images/A4 bundle.jpg') }}" alt="A4">
-                                    </a>
-                                </div>
-                                <div class="details">
-                                    <h3><a href="/shop-index">Papers</a></h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="stationery-item">
-                                <div class="img-holder">
-                                    <a href="/shop-index">
-                                        <img src="{{ asset('images/pens.jpg') }}" alt="Pen">
-                                    </a>
-                                </div>
-                                <div class="details">
-                                    <h3><a href="/shop-index">Pens</a></h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="stationery-item">
-                                <div class="img-holder">
-                                    <a href="/shop-index">
-                                        <img src="{{ asset('images/file-covers.jpg') }}" alt="File">
-                                    </a>
-                                </div>
-                                <div class="details">
-                                    <h3><a href="/shop-index">File Covers</a></h3>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-
-</section>
-
-
-
-
-
-
-
-
-<section id="services">
-    <div class="container">
-
-        <div class="row">
-            <div class="col-lg-4 services-details">
-                <h2 class="wow fadeInUp">Our Services</h2>
-                <h3 class="wow fadeInUp">Offering a wide range of print and copy services</h3>
-                <div class="wow fadeInUp">
-                    <p>SLMA is also a trusted name for a wide range of print and copy services in Sri Lanka Army.
-                        From Digital Offset Printing, Photocopying, Document Scanning, Laminating,
-                        Binding and Graphic Designing and Flex,
-                        SLMA is indeed a one-stop-shop for all your printing and copying requirements.</p>
-                </div>
-            </div>
-
-
-            <div class="col-lg-8">
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-                        <div class="service-item">
-                            <div class="img-holder wow fadeInUp">
-                                <a href="{{route('digital-offset')}}" title="Digital Offset  Printing">
-                                    <img src="{{ asset('images/dg-prnt.jpg') }}" alt="Digital Print">
-                                </a>
-                            </div>
-                            <h3 class="details wow fadeInUp" data-wow-delay="0.15s">
-                                <a href="{{route('digital-offset')}}">
-                                    Digital Offset Printing
-                                </a>
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-                        <div class="service-item">
-                            <div class="img-holder wow fadeInUp">
-                                <a href="{{route('digital-offset')}}" title="Digital Offset  Printing">
-                                    <img src="{{ asset('images/bg_02.jpg') }}" alt="Digital Print">
-                                </a>
-                            </div>
-                            <h3 class="details wow fadeInUp" data-wow-delay="0.15s">
-                                <a href="{{route('digital-offset')}}">
-                                    Photo Copy
-                                </a>
-                            </h3>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-                        <div class="service-item">
-                            <div class="img-holder wow fadeInUp">
-                                <a href="{{route('digital-offset')}}" title="Digital Offset  Printing">
-                                    <img src="{{ asset('images/bg_05.jpg') }}" alt="Digital Print">
-                                </a>
-                            </div>
-                            <h3 class="details wow fadeInUp" data-wow-delay="0.15s">
-                                <a href="{{route('digital-offset')}}">
-                                    Document Scanning
-                                </a>
-                            </h3>
-                        </div>
-                    </div>
-
-
-                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-                        <div class="service-item">
-                            <div class="img-holder wow fadeInUp">
-                                <a href="{{route('digital-offset')}}" title="Digital Offset  Printing">
-                                    <img src="{{ asset('images/bg_06.jpg') }}" alt="Digital Print">
-                                </a>
-                            </div>
-                            <h3 class="details wow fadeInUp" data-wow-delay="0.15s">
-                                <a href="{{route('digital-offset')}}">
-                                    Laminating
-                                </a>
-                            </h3>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-                        <div class="service-item">
-                            <div class="img-holder wow fadeInUp">
-                                <a href="{{route('digital-offset')}}" title="Digital Offset  Printing">
-                                    <img src="{{ asset('images/bg_07.jpg') }}" alt="Digital Print">
-                                </a>
-                            </div>
-                            <h3 class="details wow fadeInUp" data-wow-delay="0.15s">
-                                <a href="{{route('digital-offset')}}">
-                                    Binding
-                                </a>
-                            </h3>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-                        <div class="service-item">
-                            <div class="img-holder wow fadeInUp">
-                                <a href="{{route('digital-offset')}}" title="Digital Offset  Printing">
-                                    <img src="{{ asset('images/01.jpg') }}" alt="Digital Print">
-                                </a>
-                            </div>
-                            <h3 class="details wow fadeInUp" data-wow-delay="0.15s">
-                                <a href="{{route('digital-offset')}}">
-                                    Graphic Designing
-                                </a>
-                            </h3>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-                        <div class="service-item">
-                            <div class="img-holder wow fadeInUp">
-                                <a href="{{route('digital-offset')}}" title="Digital Offset  Printing">
-                                    <img src="{{ asset('images/01.jpg') }}" alt="Digital Print">
-                                </a>
-                            </div>
-                            <h3 class="details wow fadeInUp" data-wow-delay="0.15s">
-                                <a href="{{route('digital-offset')}}">
-                                    Computer Related Services
-                                </a>
-                            </h3>
-                        </div>
-                    </div>
-                </div><!-- /row -->
-            </div>
-
-        </div>
-
-    </div>
-</section>
-
-<div id="contacts">
+<div id="breadcrumb-holder">
     <div class="container">
         <div class="row">
-
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                <div class="contact-item wow fadeInUp">
-                    <div class="icon-holder">
-                        <div class="icon">
-                            <i class="fa fa-map-marker" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                    <div class="details">
-                        <div>
-                            Sri Lanka Military Academy<br />
-                            Diyatalawa<br />
-                            Sri Lanka
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                <div class="contact-item wow fadeInUp">
-                    <div class="icon-holder">
-                        <div class="icon">
-                            <i class="fa fa-phone" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                    <div class="details">
-                        <a href="tel:+940000000" class="phone">(+94) 000 000 000</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                <div class="contact-item wow fadeInUp">
-                    <div class="icon-holder">
-                        <div class="icon">
-                            <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                    <div class="details">
-                        <div>
-                            [email] : slma@army.lk<br />
-                            [fax] : (+94) 000 - 2 000 000<br />
-                        </div>
-                    </div>
-                </div>
-            </div>
 
         </div>
     </div>
 </div>
 
+<div class="container page-container">
+    <div class="row">
+
+        <div class="col-lg-10 col-md-11">
+
+            <div class="page-content page-col">
+                <fieldset>
+                    <h1 class="wow fadeInUp">Order Form</h1>
+
+                    <div class="wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="form-group">
+                            <div class="col-lg-10 col-md-10">
+                                <span class="wpcf7-form-control-wrap firstname"><input type="text" name="firstname" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control input-md" aria-required="true" aria-invalid="false" placeholder="First Name" /></span>
+                            </div>
+                            <div class="col-lg-10 col-md-10">
+                                <span class="wpcf7-form-control-wrap lastname"><input type="text" name="lastname" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control input-md" aria-required="true" aria-invalid="false" placeholder="Last Name" /></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-10 col-md-10">
+                                <select class="form-control service_id" data-live-search="true" name="service_id[]" required>
+                                    <option value="" disabled selected>Select service</option>
+                                    @foreach($services as $service)
+                                        <option value="{{ $service->id }}">{{ $service->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-10 col-md-10">
+                                <span class="wpcf7-form-control-wrap mobile"><input type="text" name="mobile" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control input-md" aria-required="true" aria-invalid="false" placeholder="Mobile" /></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-10 col-md-10">
+                                <span class="wpcf7-form-control-wrap message"><textarea name="message" cols="40" rows="6" class="wpcf7-form-control wpcf7-textarea form-control" aria-invalid="false" placeholder="Your inquiry here"></textarea></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-10 col-md-10">
+                                <input type="submit" value="Send" class="wpcf7-form-control has-spinner wpcf7-submit btn btn-black" id="submit" />
+                            </div>
+                        </div>
+
+                    </div>
+                </fieldset>
+
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+</div>
 
 
 <footer id="footer">
@@ -503,16 +263,7 @@
 </script>
 <script type="text/javascript" src="http://alston.lk/wp-content/plugins/contact-form-7/modules/recaptcha/index.js?ver=5.5.6" id="wpcf7-recaptcha-js"></script>
 
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/assets/css/chat.min.css">
-<script>
-    var botmanWidget = {
-        aboutText: 'SLMA',
-        introMessage: "✋ Hi! I'm form Publication of SLMA"
-    };
-</script>
 
-<script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
-<!-- /.content -->
 </body>
 
 </html>

@@ -34,7 +34,7 @@
                 <div class="container-fluid">
                     <form action="{{ route('orders.approve', $order->id) }}" method="POST">
                         @csrf
-{{--                        @method('PUT')--}}
+                        @method('PUT')
                         <div class="card-header">
                             <div class="form-group row">
                                 <div class="col-6 row">
@@ -64,9 +64,15 @@
                                     @endif
                                 </div>
                                 <div class="col-12">
-                                    <label for="date" class="col-sm-4 col-form-label">Remarks</label>
+                                    <label for="remarks" class="col-sm-4 col-form-label">Remarks from Customer</label>
                                     <div class="col-sm-12">
-                                        <input type="text" name="remarks" class="form-control" value="{{ $order->remarks }}">
+                                        <input type="text" class="form-control" value="{{ $order->remarks }}">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <label for="notes" class="col-sm-4 col-form-label">Special Notes</label>
+                                    <div class="col-sm-12">
+                                        <input type="text"  class="form-control" value="{{ $note->notes ?? '-'}}">
                                     </div>
                                 </div>
                             </div>
@@ -112,14 +118,99 @@
                         </div>
                         <div class="col-md-12 text-center">
                             @if($order->status != 0)
-                                <button type="submit" name="approval" value="approve" class="btn btn-sm btn-outline-success">Approve</button>
-                                <button type="submit" name="approval" value="Forward" class="btn btn-sm btn-outline-warning">Forward</button>
-                                <button type="submit" name="approval" value="reject" class="btn btn-sm btn-outline-danger"
-                                        @if($order->status == 2) disabled @endif>Reject</button>
+                                <button type="submit" name="approval" value="approve" class="btn btn-sm btn-outline-success">Completed</button>
+                                <button type="button" class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#forwardModal">
+                                    Forward
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#rejectModal" @if($order->status == 2) disabled @endif>
+                                    Reject
+                                </button>
                             @endif
                         </div>
                     </form>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="rejectModal" tabindex="-1" role="dialog" aria-labelledby="rejectModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form action="{{ route('orders.approve', $order->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="rejectModalLabel">Reject Order</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <label for="fwd_to" class="col-form-label">Forward to</label>
+                            <div class="col-md-12">
+                                @if(isset($users))
+                                    <select name="fwd_to" class="form-control" data-live-search="true">
+                                        <option selected>Assign</option>
+                                        @foreach($users as $user)
+                                            <option value="{{ $user->name }}">{{ $user->name }}</option>
+                                        @endforeach
+                                    </select>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label for="notes">Reason for Rejecting</label>
+                            <div class="col-md-12">
+                                <input type="text" name="notes" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" name="approval" value="reject" class="btn btn-danger">Reject</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="forwardModal" tabindex="-1" role="dialog" aria-labelledby="forwardModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form action="{{ route('orders.approve', $order->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="forwardModalLabel">Forward Order</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <label for="fwd_to" class="col-form-label">Forward to</label>
+                            <div class="col-md-12">
+                                @if(isset($users))
+                                    <select name="fwd_to" class="form-control" data-live-search="true">
+                                        <option selected>Assign</option>
+                                        @foreach($users as $user)
+                                            <option value="{{ $user->name }}">{{ $user->name }}</option>
+                                        @endforeach
+                                    </select>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label for="notes">Reason for forwarding</label>
+                            <div class="col-md-12">
+                                <input type="text" name="notes" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" name="approval" value="forward" class="btn btn-danger">Forward</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

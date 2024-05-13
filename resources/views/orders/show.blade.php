@@ -38,7 +38,7 @@
                         <div class="card-header">
                             <div class="form-group row">
                                 <div class="col-6 row">
-                                    <label for="customer_id" class="col-sm-2 col-form-label">Customer</label>
+                                    <label for="customer_id" class="col-sm-3 col-form-label">Customer</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" value="{{ $order->customer->name }}" readonly>
                                     </div>
@@ -118,13 +118,19 @@
                         </div>
                         <div class="col-md-12 text-center">
                             @if($order->status != 0)
-                                <button type="submit" name="approval" value="approve" class="btn btn-sm btn-outline-success">Completed</button>
+                                @can('publication-management-orders-complete')
+                                    <button type="submit" name="approval" value="approve" class="btn btn-sm btn-outline-success">Completed</button>
+                                @endcan
+                                @can('publication-management-orders-forward')
                                 <button type="button" class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#forwardModal">
                                     Forward
                                 </button>
+                                @endcan
+                                @can('publication-management-orders-reject')
                                 <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#rejectModal" @if($order->status == 2) disabled @endif>
                                     Reject
                                 </button>
+                                @endcan
                             @endif
                         </div>
                     </form>

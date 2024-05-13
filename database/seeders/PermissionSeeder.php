@@ -74,7 +74,10 @@ class PermissionSeeder extends Seeder
             'publication-management-orders',
             'publication-management-orders-create',
             'publication-management-orders-edit',
-            'publication-management-orders-delete',
+            'publication-management-orders-all',
+            'publication-management-orders-reject',
+            'publication-management-orders-complete',
+            'publication-management-orders-forward',
 
         ];
 

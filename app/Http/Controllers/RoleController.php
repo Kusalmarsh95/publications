@@ -36,7 +36,6 @@ class RoleController extends Controller
         $moduleWisePermissions = [
             'administration' => array(),
             'master-data' => array(),
-            'memberships' => array(),
             'stock-management' => array(),
             'publication-management' => array(),
 //            'bulk' => array(),

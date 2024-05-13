@@ -135,32 +135,32 @@
                     </ul>
                 </li>
             @endcan
-            {{--            @can('master-data')--}}
+            @can('publication-management')
                 <li class="nav-item {{ request()->is('customers*') || request()->is('orders*') ?  'menu-open' : '' }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-print text-orange"></i>
                         <p> {{ __('Publication Management') }} <i class="fas fa-angle-left right text-orange"></i></p>
                     </a>
                     <ul class="nav nav-treeview">
-                        {{--                        @can('master-data-items-category')--}}
+                        @can('publication-management-customers')
                         <li class="nav-item">
                             <a href="{{ route('customers.index') }}" class="nav-link {{ request()->routeIs('customers.*') ? 'active' : '' }}">
                                 <i class="nav-icon fas  fa-users text-orange"></i>
                                 <p> {{ __('Customers') }} </p>
                             </a>
                         </li>
-                        {{--                        @endcan--}}
-                        {{--                        @can('master-data-items-category')--}}
+                        @endcan
+                        @can('publication-management-orders')
                         <li class="nav-item">
                             <a href="{{ route('orders.index') }}" class="nav-link {{ request()->routeIs('orders.*') ? 'active' : '' }}">
                                 <i class="nav-icon fas  fa-arrow-up-wide-short text-orange"></i>
                                 <p> {{ __('Orders') }} </p>
                             </a>
                         </li>
-                        {{--                        @endcan--}}
+                        @endcan
                     </ul>
                 </li>
-{{--            @endcan--}}
+            @endcan
 
             <li class="nav-item">
                 <form method="POST" action="{{ route('logout') }}">

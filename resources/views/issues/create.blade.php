@@ -128,7 +128,6 @@
         $(document).ready(function () {
             var categoryCounter = 1;
 
-            // Function to add a new category row
             function addCategoryRow() {
                 var newRow = `
                 <div class="row">
@@ -183,7 +182,12 @@
 
             var itemPrices = {
                 @foreach($items as $item)
-                '{{ $item->id }}': '{{ $item->buying_price  }}',
+                '{{ $item->id }}': '{{ $item->buying_price }}',
+                @endforeach
+            };
+            var available = {
+                @foreach($items as $item)
+                '{{ $item->id }}': '{{ $item->quantity }}',
                 @endforeach
             };
 

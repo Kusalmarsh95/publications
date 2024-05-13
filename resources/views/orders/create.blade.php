@@ -5,11 +5,11 @@
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-6 text-Left">
+                    <div class="col-sm-7 text-Left">
                         <h4><i class="nav-icon fas fa-print text-orange"></i> <strong>Publication Management</strong> | Orders
                             Management</h4>
                     </div>
-                    <div class="col-sm-6 text-right">
+                    <div class="col-sm-5 text-right">
                         <h6> <strong>Publication Management</strong> > <i class="nav-icon fas fa-users text-orange"></i> Create Orders</h6>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                         <div class="card-header">
                             <div class="form-group row">
                                 <div class="col-6 row">
-                                    <label for="customer_id" class="col-sm-2 col-form-label">Customer</label>
+                                    <label for="customer_id" class="col-sm-3 col-form-label">Customer</label>
                                     <div class="col-sm-8">
                                         @if(isset($customers))
                                             <select name="customer_id" class="form-control" data-live-search="true">

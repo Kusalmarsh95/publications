@@ -25,7 +25,7 @@ class OrderController extends Controller
             if (!$latestAssignment){
                 $order->assignee = 'Not Assigned';
             }else {
-                $order->assignee = $latestAssignment->fwd_to;
+                    $order->assignee = $latestAssignment->fwd_to;
             }
         }
 
@@ -46,7 +46,6 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-
         $orderData = $request->validate([
             'customer_id' => 'required|exists:suppliers,id',
             'date' => 'required',
@@ -91,6 +90,13 @@ class OrderController extends Controller
         }
 
         OrderDetail::insert($orderDetails);
+
+        OrderAssign::create([
+            'order_id' => $order->id,
+            'fwd_to' => 'Publication OC',
+            'fwd_by' => 'Customer',
+            'notes' => 'Initial order',
+        ]);
 
         return redirect()->route('orders.index')->with('success', 'Order created successfully');
     }

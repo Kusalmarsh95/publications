@@ -38,7 +38,7 @@
                         <div class="card-header">
                             <div class="form-group row">
                                 <div class="col-6 row">
-                                    <label for="customer_id" class="col-sm-2 col-form-label">Customer</label>
+                                    <label for="customer_id" class="col-sm-3 col-form-label">Customer</label>
                                     <div class="col-sm-9">
                                         @if(isset($customers))
                                             <select name="customer_id" class="form-control" data-live-search="true">

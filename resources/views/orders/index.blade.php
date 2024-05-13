@@ -30,59 +30,166 @@
         </div>
     @endif
 
-    <div class="card m-1">
-        <div class="card-body">
-            <table class="table table-bordered " id="ordersTable">
-                <thead>
-                <tr class="text-center">
-                    <th style="width: 20px">No</th>
-                    <th>Order No</th>
-                    <th>Customer</th>
-                    <th>Date</th>
-                    <th>Status</th>
-                    <th>Assignee</th>
-                    <th>Amount</th>
-                    <th class="text-center" style="width: 120px">Action</th>
-                </tr>
-                </thead>
-                @php
-                    $i=0;
-                @endphp
-                <tbody>
-                @foreach ($orders as $order)
-                    <tr>
-                        <td>{{ ++$i }}</td>
-                        <td>{{ $order->order_no ?? '-' }}</td>
-                        <td>{{ $order->customer->name ?? '-' }}</td>
-                        <td>{{ $order->date ?? '-' }}</td>
-                        <td>
-                            @if($order->status === 0)
-                                <label class="badge badge-success">Delivered</label>
-                            @elseif($order->status === 1)
-                                <label class="badge badge-warning">Pending</label>
-                            @elseif($order->status === 2)
-                                <label class="badge badge-danger">Rejected</label>
-                            @else
-                                -
-                            @endif
-                        </td>
-                        <td>{{ $order->assignee }}</td>
-                        <td>{{ number_format($order->total_amount,2) ?? '-' }}</td>
-                        <td class="text-center">
-                            <a class="btn" href="{{ route('orders.show', $order->id) }}">
-                                <i class="fas fa-eye" style="color: rosybrown;"></i>
-                            </a>
-                            <a class="btn" href="{{ route('orders.edit', $order->id) }}">
-                                <i class="fas fa-pen" style="color: lightseagreen;"></i>
-                            </a>
-                            <button class="btn delete-button" data-id="{{ $order->id }}">
-                                <i class="fas fa-trash-alt" style="color: red;"></i>
-                            </button>
-                        </td>
+    <div class="card">
+        <div class="card-header">
+            <button class="tab-link" onclick="openPage('All', this, '#3e7d2c')" id="defaultOpen">All</button>
+            <button class="tab-link" onclick="openPage('MyOrders', this, '#3e7d2c')">My Orders</button>
+            <button class="tab-link" onclick="openPage('Assign', this, '#3e7d2c')">Assign To Me</button>
+            <div id="All" class="tab-content">
+                <table class="table table-bordered " id="all">
+                    <thead>
+                    <tr class="text-center">
+                        <th style="width: 20px">No</th>
+                        <th>Order No</th>
+                        <th>Customer</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Assignee</th>
+                        <th>Amount</th>
+                        <th class="text-center" style="width: 120px">Action</th>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    @php
+                        $i=0;
+                    @endphp
+                    <tbody>
+                    @foreach ($orders as $order)
+                        <tr>
+                            <td>{{ ++$i }}</td>
+                            <td>{{ $order->order_no ?? '-' }}</td>
+                            <td>{{ $order->customer->name ?? '-' }}</td>
+                            <td>{{ $order->date ?? '-' }}</td>
+                            <td>
+                                @if($order->status === 0)
+                                    <label class="badge badge-success">Delivered</label>
+                                @elseif($order->status === 1)
+                                    <label class="badge badge-warning">Pending</label>
+                                @elseif($order->status === 2)
+                                    <label class="badge badge-danger">Rejected</label>
+                                @else
+                                    -
+                                @endif
+                            </td>
+                            <td>{{ $order->assignee }}</td>
+                            <td>{{ number_format($order->total_amount,2) ?? '-' }}</td>
+                            <td class="text-center">
+                                <a class="btn" href="{{ route('orders.show', $order->id) }}">
+                                    <i class="fas fa-eye" style="color: rosybrown;"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <div id="MyOrders" class="tab-content">
+                <table class="table table-bordered " id="my">
+                    <thead>
+                    <tr class="text-center">
+                        <th style="width: 20px">No</th>
+                        <th>Order No</th>
+                        <th>Customer</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Assignee</th>
+                        <th>Amount</th>
+                        <th class="text-center" style="width: 120px">Action</th>
+                    </tr>
+                    </thead>
+                    @php
+                        $i=0;
+                    @endphp
+                    <tbody>
+                    @foreach ($orders as $order)
+                        @if($order->customer_id == Auth::user()->name)
+                        <tr>
+                            <td>{{ ++$i }}</td>
+                            <td>{{ $order->order_no ?? '-' }}</td>
+                            <td>{{ $order->customer->name ?? '-' }}</td>
+                            <td>{{ $order->date ?? '-' }}</td>
+                            <td>
+                                @if($order->status === 0)
+                                    <label class="badge badge-success">Delivered</label>
+                                @elseif($order->status === 1)
+                                    <label class="badge badge-warning">Pending</label>
+                                @elseif($order->status === 2)
+                                    <label class="badge badge-danger">Rejected</label>
+                                @else
+                                    -
+                                @endif
+                            </td>
+                            <td>{{ $order->assignee }}</td>
+                            <td>{{ number_format($order->total_amount,2) ?? '-' }}</td>
+                            <td class="text-center">
+                                <a class="btn" href="{{ route('orders.show', $order->id) }}">
+                                    <i class="fas fa-eye" style="color: rosybrown;"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        @endif
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <div id="Assign" class="tab-content">
+                <table class="table table-bordered " id="assign">
+                    <thead>
+                    <tr class="text-center">
+                        <th style="width: 20px">No</th>
+                        <th>Order No</th>
+                        <th>Customer</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Assignee</th>
+                        <th>Amount</th>
+                        <th class="text-center" style="width: 120px">Action</th>
+                    </tr>
+                    </thead>
+                    @php
+                        $i=0;
+                    @endphp
+                    <tbody>
+                    @foreach ($orders as $order)
+                        @if($order->assignee == Auth::user()->name)
+                        <tr>
+                            <td>{{ ++$i }}</td>
+                            <td>{{ $order->order_no ?? '-' }}</td>
+                            <td>{{ $order->customer->name ?? '-' }}</td>
+                            <td>{{ $order->date ?? '-' }}</td>
+                            <td>
+                                @if($order->status === 0)
+                                    <label class="badge badge-success">Delivered</label>
+                                @elseif($order->status === 1)
+                                    <label class="badge badge-warning">Pending</label>
+                                @elseif($order->status === 2)
+                                    <label class="badge badge-danger">Rejected</label>
+                                @else
+                                    -
+                                @endif
+                            </td>
+                            <td>{{ $order->assignee }}</td>
+                            <td>{{ number_format($order->total_amount,2) ?? '-' }}</td>
+                            <td class="text-center">
+                                <a class="btn" href="{{ route('orders.show', $order->id) }}">
+                                    <i class="fas fa-eye" style="color: rosybrown;"></i>
+                                </a>
+                                @can('publication-management-orders-edit')
+                                    <a class="btn" href="{{ route('orders.edit', $order->id) }}">
+                                        <i class="fas fa-pen" style="color: lightseagreen;"></i>
+                                    </a>
+                                @endcan
+                                @can('publication-management-orders-delete')
+                                    <button class="btn delete-button" data-id="{{ $order->id }}">
+                                        <i class="fas fa-trash-alt" style="color: red;"></i>
+                                    </button>
+                                @endcan
+                            </td>
+                        </tr>
+                        @endif
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -109,9 +216,26 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#ordersTable').DataTable({
+            $('#all').DataTable({
                 responsive: true,
-                buttons: []
+                // searching:false,
+                buttons: [],
+                // paging: false,
+                // info: false,
+            });
+            $('#my').DataTable({
+                responsive: true,
+                // searching:false,
+                buttons: [],
+                // paging: false,
+                // info: false,
+            });
+            $('#assign').DataTable({
+                responsive: true,
+                // paging: false,
+                // info: false,
+                buttons: [
+                ]
             });
 
             $(document).on('click', '.delete-button', function () {
@@ -131,3 +255,10 @@
         });
     </script>
 @endsection
+@push('scripts')
+    <script src="{{ asset('/js/tab-index.js') }}"> </script>
+@endpush
+
+@push('custom-css')
+    <link rel="stylesheet" href="{{ asset('/css/tab-index.css') }}"/>
+@endpush

@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : Localhost
+ Source Server         : root
  Source Server Type    : MySQL
- Source Server Version : 100432
+ Source Server Version : 100427
  Source Host           : localhost:3306
  Source Schema         : pms_db
 
  Target Server Type    : MySQL
- Target Server Version : 100432
+ Target Server Version : 100427
  File Encoding         : 65001
 
- Date: 08/05/2024 23:52:41
+ Date: 13/05/2024 18:55:19
 */
 
 SET NAMES utf8mb4;
@@ -35,12 +35,13 @@ CREATE TABLE `customers`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of customers
 -- ----------------------------
 INSERT INTO `customers` VALUES (1, 'AAA', 'abc@gmail.com', '0375151515', 'dsdadf', 'rare', NULL, 5285163, 'BOC', 'Colombo', '2024-05-06 17:37:14', '2024-05-06 17:37:14');
+INSERT INTO `customers` VALUES (3, 'Samson Perera', 'abc@gmail.com', '0372222456', '421/1, Colombo', NULL, NULL, NULL, NULL, NULL, '2024-05-10 09:43:34', '2024-05-10 09:43:34');
 
 -- ----------------------------
 -- Table structure for failed_jobs
@@ -76,7 +77,7 @@ CREATE TABLE `issue_details`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of issue_details
@@ -100,7 +101,7 @@ CREATE TABLE `issues`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of issues
@@ -180,7 +181,7 @@ CREATE TABLE `migrations`  (
   `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of migrations
@@ -205,6 +206,7 @@ INSERT INTO `migrations` VALUES (18, '2024_05_06_150443_create_issue_details_tab
 INSERT INTO `migrations` VALUES (19, '2024_05_06_151704_create_workers_table', 8);
 INSERT INTO `migrations` VALUES (20, '2024_05_06_174344_create_orders_table', 9);
 INSERT INTO `migrations` VALUES (21, '2024_05_06_174453_create_order_details_table', 9);
+INSERT INTO `migrations` VALUES (22, '2024_05_09_085314_create_order_assigns_table', 10);
 
 -- ----------------------------
 -- Table structure for model_has_permissions
@@ -240,6 +242,32 @@ CREATE TABLE `model_has_roles`  (
 -- Records of model_has_roles
 -- ----------------------------
 INSERT INTO `model_has_roles` VALUES (1, 'App\\Models\\User', 1);
+INSERT INTO `model_has_roles` VALUES (45, 'App\\Models\\User', 142);
+INSERT INTO `model_has_roles` VALUES (47, 'App\\Models\\User', 140);
+INSERT INTO `model_has_roles` VALUES (48, 'App\\Models\\User', 2);
+INSERT INTO `model_has_roles` VALUES (48, 'App\\Models\\User', 141);
+
+-- ----------------------------
+-- Table structure for order_assigns
+-- ----------------------------
+DROP TABLE IF EXISTS `order_assigns`;
+CREATE TABLE `order_assigns`  (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `order_id` bigint NOT NULL,
+  `fwd_by` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `notes` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `fwd_to` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of order_assigns
+-- ----------------------------
+INSERT INTO `order_assigns` VALUES (2, 21, '1', 'Test', 'Super Admin', '2024-05-09 09:33:34', '2024-05-09 09:33:34');
+INSERT INTO `order_assigns` VALUES (3, 21, '1', 'Test 2', 'Super Admin', '2024-05-09 10:29:45', '2024-05-09 10:29:45');
+INSERT INTO `order_assigns` VALUES (4, 23, 'Customer', 'Initial order', 'Publication OC', '2024-05-13 04:48:09', '2024-05-13 04:48:09');
 
 -- ----------------------------
 -- Table structure for order_details
@@ -255,13 +283,14 @@ CREATE TABLE `order_details`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of order_details
 -- ----------------------------
 INSERT INTO `order_details` VALUES (4, 21, 1, 15, '5.00', 75, '2024-05-08 15:17:43', '2024-05-08 15:17:43');
 INSERT INTO `order_details` VALUES (9, 22, 1, 25, '5.00', 125, '2024-05-08 15:26:42', '2024-05-08 15:26:42');
+INSERT INTO `order_details` VALUES (10, 23, 1, 15, '5.00', 75, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for orders
@@ -282,13 +311,14 @@ CREATE TABLE `orders`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`, `order_no`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 24 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of orders
 -- ----------------------------
-INSERT INTO `orders` VALUES (21, 1, '2024-05-06', '00000002', '', 'Black and white print', 1, 0, 75, 'Super Admin', NULL, '2024-05-08 14:48:25', '2024-05-08 15:17:43');
+INSERT INTO `orders` VALUES (21, 1, '2024-05-06', '00000002', '', 'Black and white print', 1, 0, 75, 'Super Admin', NULL, '2024-05-08 14:48:25', '2024-05-09 09:28:20');
 INSERT INTO `orders` VALUES (22, 1, '2024-05-06', '00000003', 'uploads/OftWQcjn2Cqnl8xh4XuFFlMmYMGnCfFkU6YN8eSu.pptx', 'A', 1, 0, 125, 'Super Admin', NULL, '2024-05-08 15:20:57', '2024-05-08 15:26:42');
+INSERT INTO `orders` VALUES (23, 1, '2024-05-13', '00000004', '', NULL, 1, 0, 75, 'Super Admin', NULL, '2024-05-13 04:48:09', '2024-05-13 04:48:09');
 
 -- ----------------------------
 -- Table structure for password_reset_tokens
@@ -332,7 +362,7 @@ CREATE TABLE `permissions`  (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `permissions_name_guard_name_unique`(`name` ASC, `guard_name` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1165 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1172 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of permissions
@@ -359,42 +389,45 @@ INSERT INTO `permissions` VALUES (1041, 'master-data-items', 'web', '2024-01-30 
 INSERT INTO `permissions` VALUES (1042, 'master-data-items-create', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
 INSERT INTO `permissions` VALUES (1043, 'master-data-items-edit', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
 INSERT INTO `permissions` VALUES (1044, 'master-data-items-delete', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
-INSERT INTO `permissions` VALUES (1045, 'master-data-relashionship', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
-INSERT INTO `permissions` VALUES (1046, 'master-data-relashionship-create', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
-INSERT INTO `permissions` VALUES (1047, 'master-data-relashionship-edit', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
-INSERT INTO `permissions` VALUES (1048, 'master-data-relashionship-delete', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
-INSERT INTO `permissions` VALUES (1049, 'master-data-district', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
-INSERT INTO `permissions` VALUES (1050, 'master-data-district-create', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
-INSERT INTO `permissions` VALUES (1051, 'master-data-district-edit', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
-INSERT INTO `permissions` VALUES (1052, 'master-data-district-delete', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
-INSERT INTO `permissions` VALUES (1053, 'master-data-bank', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
-INSERT INTO `permissions` VALUES (1054, 'master-data-bank-create', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
-INSERT INTO `permissions` VALUES (1055, 'master-data-bank-edit', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
-INSERT INTO `permissions` VALUES (1056, 'master-data-bank-delete', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
-INSERT INTO `permissions` VALUES (1057, 'master-data-bank-branch', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
-INSERT INTO `permissions` VALUES (1058, 'master-data-bank-branch-create', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
-INSERT INTO `permissions` VALUES (1059, 'master-data-bank-branch-edit', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
-INSERT INTO `permissions` VALUES (1060, 'master-data-bank-branch-delete', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
-INSERT INTO `permissions` VALUES (1061, 'master-data-reject-reason', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
-INSERT INTO `permissions` VALUES (1062, 'master-data-reject-reason-create', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
-INSERT INTO `permissions` VALUES (1063, 'master-data-reject-reason-edit', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
-INSERT INTO `permissions` VALUES (1064, 'master-data-reject-reason-delete', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
-INSERT INTO `permissions` VALUES (1065, 'master-data-member-status', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
-INSERT INTO `permissions` VALUES (1066, 'master-data-member-status-create', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
-INSERT INTO `permissions` VALUES (1067, 'master-data-member-status-edit', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
-INSERT INTO `permissions` VALUES (1068, 'master-data-member-status-delete', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
-INSERT INTO `permissions` VALUES (1069, 'master-data-withdrawal-product', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
-INSERT INTO `permissions` VALUES (1070, 'master-data-withdrawal-product-create', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
-INSERT INTO `permissions` VALUES (1071, 'master-data-withdrawal-product-edit', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
-INSERT INTO `permissions` VALUES (1072, 'master-data-withdrawal-product-delete', 'web', '2024-01-30 10:35:09', '2024-01-30 10:35:09');
-INSERT INTO `permissions` VALUES (1073, 'master-data-contribution-interest', 'web', '2024-01-30 10:35:09', '2024-01-30 10:35:09');
-INSERT INTO `permissions` VALUES (1074, 'master-data-contribution-interest-create', 'web', '2024-01-30 10:35:09', '2024-01-30 10:35:09');
-INSERT INTO `permissions` VALUES (1075, 'master-data-contribution-interest-edit', 'web', '2024-01-30 10:35:09', '2024-01-30 10:35:09');
-INSERT INTO `permissions` VALUES (1076, 'master-data-contribution-interest-delete', 'web', '2024-01-30 10:35:09', '2024-01-30 10:35:09');
-INSERT INTO `permissions` VALUES (1077, 'master-data-loan-product', 'web', '2024-01-30 10:35:09', '2024-01-30 10:35:09');
-INSERT INTO `permissions` VALUES (1078, 'master-data-loan-product-create', 'web', '2024-01-30 10:35:09', '2024-01-30 10:35:09');
-INSERT INTO `permissions` VALUES (1079, 'master-data-loan-product-edit', 'web', '2024-01-30 10:35:09', '2024-01-30 10:35:09');
-INSERT INTO `permissions` VALUES (1080, 'master-data-loan-product-delete', 'web', '2024-01-30 10:35:09', '2024-01-30 10:35:09');
+INSERT INTO `permissions` VALUES (1045, 'master-data-service-category', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
+INSERT INTO `permissions` VALUES (1046, 'master-data-service-category-create', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
+INSERT INTO `permissions` VALUES (1047, 'master-data-service-category-edit', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
+INSERT INTO `permissions` VALUES (1048, 'master-data-service-category-delete', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
+INSERT INTO `permissions` VALUES (1049, 'master-data-service', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
+INSERT INTO `permissions` VALUES (1050, 'master-data-service-create', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
+INSERT INTO `permissions` VALUES (1051, 'master-data-service-edit', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
+INSERT INTO `permissions` VALUES (1052, 'master-data-service-delete', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
+INSERT INTO `permissions` VALUES (1053, 'stock-management', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
+INSERT INTO `permissions` VALUES (1054, 'stock-management-suppliers', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
+INSERT INTO `permissions` VALUES (1055, 'stock-management-suppliers-create', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
+INSERT INTO `permissions` VALUES (1056, 'stock-management-suppliers-edit', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
+INSERT INTO `permissions` VALUES (1057, 'stock-management-suppliers-delete', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
+INSERT INTO `permissions` VALUES (1058, 'stock-management-workers', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
+INSERT INTO `permissions` VALUES (1059, 'stock-management-workers-create', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
+INSERT INTO `permissions` VALUES (1060, 'stock-management-workers-edit', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
+INSERT INTO `permissions` VALUES (1061, 'stock-management-workers-delete', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
+INSERT INTO `permissions` VALUES (1062, 'stock-management-purchase', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
+INSERT INTO `permissions` VALUES (1063, 'stock-management-purchase-create', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
+INSERT INTO `permissions` VALUES (1064, 'stock-management-purchase-edit', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
+INSERT INTO `permissions` VALUES (1065, 'stock-management-purchase-delete', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
+INSERT INTO `permissions` VALUES (1066, 'stock-management-issues', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
+INSERT INTO `permissions` VALUES (1067, 'stock-management-issues-create', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
+INSERT INTO `permissions` VALUES (1068, 'stock-management-issues-edit', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
+INSERT INTO `permissions` VALUES (1069, 'stock-management-issues-delete', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
+INSERT INTO `permissions` VALUES (1070, 'publication-management', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
+INSERT INTO `permissions` VALUES (1071, 'publication-management-customers', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
+INSERT INTO `permissions` VALUES (1072, 'publication-management-customers-create', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
+INSERT INTO `permissions` VALUES (1073, 'publication-management-customers-edit', 'web', '2024-01-30 10:35:08', '2024-01-30 10:35:08');
+INSERT INTO `permissions` VALUES (1074, 'publication-management-customers-delete', 'web', '2024-01-30 10:35:09', '2024-01-30 10:35:09');
+INSERT INTO `permissions` VALUES (1075, 'publication-management-orders', 'web', '2024-01-30 10:35:09', '2024-01-30 10:35:09');
+INSERT INTO `permissions` VALUES (1076, 'publication-management-orders-create', 'web', '2024-01-30 10:35:09', '2024-01-30 10:35:09');
+INSERT INTO `permissions` VALUES (1077, 'publication-management-orders-edit', 'web', '2024-01-30 10:35:09', '2024-01-30 10:35:09');
+INSERT INTO `permissions` VALUES (1078, 'publication-management-orders-delete', 'web', '2024-01-30 10:35:09', '2024-01-30 10:35:09');
+INSERT INTO `permissions` VALUES (1167, 'publication-management-orders-view', 'web', '2024-01-30 10:35:09', '2024-01-30 10:35:09');
+INSERT INTO `permissions` VALUES (1168, 'publication-management-orders-complete', 'web', '2024-01-30 10:35:09', '2024-01-30 10:35:09');
+INSERT INTO `permissions` VALUES (1169, 'publication-management-orders-forward', 'web', '2024-01-30 10:35:09', '2024-01-30 10:35:09');
+INSERT INTO `permissions` VALUES (1170, 'publication-management-orders-all', 'web', '2024-01-30 10:35:09', '2024-01-30 10:35:09');
+INSERT INTO `permissions` VALUES (1171, 'publication-management-orders-reject', 'web', '2024-01-30 10:35:09', '2024-01-30 10:35:09');
 
 -- ----------------------------
 -- Table structure for personal_access_tokens
@@ -434,7 +467,7 @@ CREATE TABLE `purchase_details`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of purchase_details
@@ -459,7 +492,7 @@ CREATE TABLE `purchases`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of purchases
@@ -482,164 +515,6 @@ CREATE TABLE `role_has_permissions`  (
 -- ----------------------------
 -- Records of role_has_permissions
 -- ----------------------------
-INSERT INTO `role_has_permissions` VALUES (951, 14);
-INSERT INTO `role_has_permissions` VALUES (951, 15);
-INSERT INTO `role_has_permissions` VALUES (951, 16);
-INSERT INTO `role_has_permissions` VALUES (951, 17);
-INSERT INTO `role_has_permissions` VALUES (951, 19);
-INSERT INTO `role_has_permissions` VALUES (951, 23);
-INSERT INTO `role_has_permissions` VALUES (951, 24);
-INSERT INTO `role_has_permissions` VALUES (951, 25);
-INSERT INTO `role_has_permissions` VALUES (951, 38);
-INSERT INTO `role_has_permissions` VALUES (951, 39);
-INSERT INTO `role_has_permissions` VALUES (951, 40);
-INSERT INTO `role_has_permissions` VALUES (952, 16);
-INSERT INTO `role_has_permissions` VALUES (952, 17);
-INSERT INTO `role_has_permissions` VALUES (953, 14);
-INSERT INTO `role_has_permissions` VALUES (954, 14);
-INSERT INTO `role_has_permissions` VALUES (954, 15);
-INSERT INTO `role_has_permissions` VALUES (954, 16);
-INSERT INTO `role_has_permissions` VALUES (954, 17);
-INSERT INTO `role_has_permissions` VALUES (954, 19);
-INSERT INTO `role_has_permissions` VALUES (954, 23);
-INSERT INTO `role_has_permissions` VALUES (954, 24);
-INSERT INTO `role_has_permissions` VALUES (954, 25);
-INSERT INTO `role_has_permissions` VALUES (954, 38);
-INSERT INTO `role_has_permissions` VALUES (954, 39);
-INSERT INTO `role_has_permissions` VALUES (954, 40);
-INSERT INTO `role_has_permissions` VALUES (955, 14);
-INSERT INTO `role_has_permissions` VALUES (955, 15);
-INSERT INTO `role_has_permissions` VALUES (955, 16);
-INSERT INTO `role_has_permissions` VALUES (955, 17);
-INSERT INTO `role_has_permissions` VALUES (955, 19);
-INSERT INTO `role_has_permissions` VALUES (955, 23);
-INSERT INTO `role_has_permissions` VALUES (955, 24);
-INSERT INTO `role_has_permissions` VALUES (955, 25);
-INSERT INTO `role_has_permissions` VALUES (955, 38);
-INSERT INTO `role_has_permissions` VALUES (955, 39);
-INSERT INTO `role_has_permissions` VALUES (955, 40);
-INSERT INTO `role_has_permissions` VALUES (956, 16);
-INSERT INTO `role_has_permissions` VALUES (959, 16);
-INSERT INTO `role_has_permissions` VALUES (960, 17);
-INSERT INTO `role_has_permissions` VALUES (960, 19);
-INSERT INTO `role_has_permissions` VALUES (961, 17);
-INSERT INTO `role_has_permissions` VALUES (962, 16);
-INSERT INTO `role_has_permissions` VALUES (963, 14);
-INSERT INTO `role_has_permissions` VALUES (963, 15);
-INSERT INTO `role_has_permissions` VALUES (963, 16);
-INSERT INTO `role_has_permissions` VALUES (963, 17);
-INSERT INTO `role_has_permissions` VALUES (963, 23);
-INSERT INTO `role_has_permissions` VALUES (963, 24);
-INSERT INTO `role_has_permissions` VALUES (963, 25);
-INSERT INTO `role_has_permissions` VALUES (963, 38);
-INSERT INTO `role_has_permissions` VALUES (963, 39);
-INSERT INTO `role_has_permissions` VALUES (963, 40);
-INSERT INTO `role_has_permissions` VALUES (964, 14);
-INSERT INTO `role_has_permissions` VALUES (964, 15);
-INSERT INTO `role_has_permissions` VALUES (964, 16);
-INSERT INTO `role_has_permissions` VALUES (965, 16);
-INSERT INTO `role_has_permissions` VALUES (992, 17);
-INSERT INTO `role_has_permissions` VALUES (993, 17);
-INSERT INTO `role_has_permissions` VALUES (994, 17);
-INSERT INTO `role_has_permissions` VALUES (995, 17);
-INSERT INTO `role_has_permissions` VALUES (998, 17);
-INSERT INTO `role_has_permissions` VALUES (999, 17);
-INSERT INTO `role_has_permissions` VALUES (1002, 17);
-INSERT INTO `role_has_permissions` VALUES (1003, 14);
-INSERT INTO `role_has_permissions` VALUES (1003, 15);
-INSERT INTO `role_has_permissions` VALUES (1003, 16);
-INSERT INTO `role_has_permissions` VALUES (1003, 23);
-INSERT INTO `role_has_permissions` VALUES (1003, 24);
-INSERT INTO `role_has_permissions` VALUES (1003, 25);
-INSERT INTO `role_has_permissions` VALUES (1003, 38);
-INSERT INTO `role_has_permissions` VALUES (1003, 39);
-INSERT INTO `role_has_permissions` VALUES (1003, 40);
-INSERT INTO `role_has_permissions` VALUES (1004, 14);
-INSERT INTO `role_has_permissions` VALUES (1004, 15);
-INSERT INTO `role_has_permissions` VALUES (1004, 16);
-INSERT INTO `role_has_permissions` VALUES (1004, 23);
-INSERT INTO `role_has_permissions` VALUES (1004, 24);
-INSERT INTO `role_has_permissions` VALUES (1004, 25);
-INSERT INTO `role_has_permissions` VALUES (1004, 38);
-INSERT INTO `role_has_permissions` VALUES (1004, 39);
-INSERT INTO `role_has_permissions` VALUES (1004, 40);
-INSERT INTO `role_has_permissions` VALUES (1005, 14);
-INSERT INTO `role_has_permissions` VALUES (1005, 15);
-INSERT INTO `role_has_permissions` VALUES (1005, 16);
-INSERT INTO `role_has_permissions` VALUES (1005, 23);
-INSERT INTO `role_has_permissions` VALUES (1005, 24);
-INSERT INTO `role_has_permissions` VALUES (1005, 25);
-INSERT INTO `role_has_permissions` VALUES (1006, 38);
-INSERT INTO `role_has_permissions` VALUES (1006, 39);
-INSERT INTO `role_has_permissions` VALUES (1006, 40);
-INSERT INTO `role_has_permissions` VALUES (1007, 14);
-INSERT INTO `role_has_permissions` VALUES (1007, 15);
-INSERT INTO `role_has_permissions` VALUES (1007, 16);
-INSERT INTO `role_has_permissions` VALUES (1008, 14);
-INSERT INTO `role_has_permissions` VALUES (1008, 15);
-INSERT INTO `role_has_permissions` VALUES (1008, 16);
-INSERT INTO `role_has_permissions` VALUES (1008, 23);
-INSERT INTO `role_has_permissions` VALUES (1008, 24);
-INSERT INTO `role_has_permissions` VALUES (1008, 25);
-INSERT INTO `role_has_permissions` VALUES (1008, 38);
-INSERT INTO `role_has_permissions` VALUES (1008, 39);
-INSERT INTO `role_has_permissions` VALUES (1008, 40);
-INSERT INTO `role_has_permissions` VALUES (1009, 14);
-INSERT INTO `role_has_permissions` VALUES (1009, 15);
-INSERT INTO `role_has_permissions` VALUES (1009, 16);
-INSERT INTO `role_has_permissions` VALUES (1009, 23);
-INSERT INTO `role_has_permissions` VALUES (1009, 24);
-INSERT INTO `role_has_permissions` VALUES (1009, 25);
-INSERT INTO `role_has_permissions` VALUES (1009, 38);
-INSERT INTO `role_has_permissions` VALUES (1009, 39);
-INSERT INTO `role_has_permissions` VALUES (1009, 40);
-INSERT INTO `role_has_permissions` VALUES (1010, 14);
-INSERT INTO `role_has_permissions` VALUES (1011, 23);
-INSERT INTO `role_has_permissions` VALUES (1012, 39);
-INSERT INTO `role_has_permissions` VALUES (1013, 38);
-INSERT INTO `role_has_permissions` VALUES (1014, 14);
-INSERT INTO `role_has_permissions` VALUES (1014, 15);
-INSERT INTO `role_has_permissions` VALUES (1014, 23);
-INSERT INTO `role_has_permissions` VALUES (1014, 24);
-INSERT INTO `role_has_permissions` VALUES (1014, 25);
-INSERT INTO `role_has_permissions` VALUES (1014, 38);
-INSERT INTO `role_has_permissions` VALUES (1014, 39);
-INSERT INTO `role_has_permissions` VALUES (1014, 40);
-INSERT INTO `role_has_permissions` VALUES (1015, 14);
-INSERT INTO `role_has_permissions` VALUES (1015, 15);
-INSERT INTO `role_has_permissions` VALUES (1015, 16);
-INSERT INTO `role_has_permissions` VALUES (1015, 23);
-INSERT INTO `role_has_permissions` VALUES (1015, 24);
-INSERT INTO `role_has_permissions` VALUES (1015, 25);
-INSERT INTO `role_has_permissions` VALUES (1015, 38);
-INSERT INTO `role_has_permissions` VALUES (1015, 39);
-INSERT INTO `role_has_permissions` VALUES (1015, 40);
-INSERT INTO `role_has_permissions` VALUES (1016, 15);
-INSERT INTO `role_has_permissions` VALUES (1016, 16);
-INSERT INTO `role_has_permissions` VALUES (1016, 23);
-INSERT INTO `role_has_permissions` VALUES (1016, 24);
-INSERT INTO `role_has_permissions` VALUES (1016, 25);
-INSERT INTO `role_has_permissions` VALUES (1016, 38);
-INSERT INTO `role_has_permissions` VALUES (1016, 39);
-INSERT INTO `role_has_permissions` VALUES (1016, 40);
-INSERT INTO `role_has_permissions` VALUES (1017, 14);
-INSERT INTO `role_has_permissions` VALUES (1017, 15);
-INSERT INTO `role_has_permissions` VALUES (1017, 16);
-INSERT INTO `role_has_permissions` VALUES (1018, 15);
-INSERT INTO `role_has_permissions` VALUES (1018, 16);
-INSERT INTO `role_has_permissions` VALUES (1018, 23);
-INSERT INTO `role_has_permissions` VALUES (1018, 24);
-INSERT INTO `role_has_permissions` VALUES (1018, 25);
-INSERT INTO `role_has_permissions` VALUES (1018, 39);
-INSERT INTO `role_has_permissions` VALUES (1018, 40);
-INSERT INTO `role_has_permissions` VALUES (1019, 39);
-INSERT INTO `role_has_permissions` VALUES (1020, 38);
-INSERT INTO `role_has_permissions` VALUES (1021, 23);
-INSERT INTO `role_has_permissions` VALUES (1021, 24);
-INSERT INTO `role_has_permissions` VALUES (1021, 25);
-INSERT INTO `role_has_permissions` VALUES (1021, 38);
-INSERT INTO `role_has_permissions` VALUES (1021, 39);
-INSERT INTO `role_has_permissions` VALUES (1021, 40);
 INSERT INTO `role_has_permissions` VALUES (1023, 1);
 INSERT INTO `role_has_permissions` VALUES (1024, 1);
 INSERT INTO `role_has_permissions` VALUES (1025, 1);
@@ -671,33 +546,74 @@ INSERT INTO `role_has_permissions` VALUES (1050, 1);
 INSERT INTO `role_has_permissions` VALUES (1051, 1);
 INSERT INTO `role_has_permissions` VALUES (1052, 1);
 INSERT INTO `role_has_permissions` VALUES (1053, 1);
+INSERT INTO `role_has_permissions` VALUES (1053, 45);
+INSERT INTO `role_has_permissions` VALUES (1053, 48);
 INSERT INTO `role_has_permissions` VALUES (1054, 1);
+INSERT INTO `role_has_permissions` VALUES (1054, 48);
 INSERT INTO `role_has_permissions` VALUES (1055, 1);
+INSERT INTO `role_has_permissions` VALUES (1055, 48);
 INSERT INTO `role_has_permissions` VALUES (1056, 1);
+INSERT INTO `role_has_permissions` VALUES (1056, 48);
 INSERT INTO `role_has_permissions` VALUES (1057, 1);
+INSERT INTO `role_has_permissions` VALUES (1057, 48);
 INSERT INTO `role_has_permissions` VALUES (1058, 1);
+INSERT INTO `role_has_permissions` VALUES (1058, 48);
 INSERT INTO `role_has_permissions` VALUES (1059, 1);
+INSERT INTO `role_has_permissions` VALUES (1059, 48);
 INSERT INTO `role_has_permissions` VALUES (1060, 1);
+INSERT INTO `role_has_permissions` VALUES (1060, 48);
 INSERT INTO `role_has_permissions` VALUES (1061, 1);
+INSERT INTO `role_has_permissions` VALUES (1061, 48);
 INSERT INTO `role_has_permissions` VALUES (1062, 1);
+INSERT INTO `role_has_permissions` VALUES (1062, 48);
 INSERT INTO `role_has_permissions` VALUES (1063, 1);
+INSERT INTO `role_has_permissions` VALUES (1063, 48);
 INSERT INTO `role_has_permissions` VALUES (1064, 1);
+INSERT INTO `role_has_permissions` VALUES (1064, 48);
 INSERT INTO `role_has_permissions` VALUES (1065, 1);
+INSERT INTO `role_has_permissions` VALUES (1065, 48);
 INSERT INTO `role_has_permissions` VALUES (1066, 1);
+INSERT INTO `role_has_permissions` VALUES (1066, 45);
+INSERT INTO `role_has_permissions` VALUES (1066, 48);
 INSERT INTO `role_has_permissions` VALUES (1067, 1);
+INSERT INTO `role_has_permissions` VALUES (1067, 45);
+INSERT INTO `role_has_permissions` VALUES (1067, 48);
 INSERT INTO `role_has_permissions` VALUES (1068, 1);
+INSERT INTO `role_has_permissions` VALUES (1068, 45);
+INSERT INTO `role_has_permissions` VALUES (1068, 48);
 INSERT INTO `role_has_permissions` VALUES (1069, 1);
+INSERT INTO `role_has_permissions` VALUES (1069, 48);
 INSERT INTO `role_has_permissions` VALUES (1070, 1);
+INSERT INTO `role_has_permissions` VALUES (1070, 45);
+INSERT INTO `role_has_permissions` VALUES (1070, 48);
 INSERT INTO `role_has_permissions` VALUES (1071, 1);
+INSERT INTO `role_has_permissions` VALUES (1071, 48);
 INSERT INTO `role_has_permissions` VALUES (1072, 1);
+INSERT INTO `role_has_permissions` VALUES (1072, 48);
 INSERT INTO `role_has_permissions` VALUES (1073, 1);
+INSERT INTO `role_has_permissions` VALUES (1073, 48);
 INSERT INTO `role_has_permissions` VALUES (1074, 1);
+INSERT INTO `role_has_permissions` VALUES (1074, 48);
 INSERT INTO `role_has_permissions` VALUES (1075, 1);
+INSERT INTO `role_has_permissions` VALUES (1075, 45);
+INSERT INTO `role_has_permissions` VALUES (1075, 48);
 INSERT INTO `role_has_permissions` VALUES (1076, 1);
+INSERT INTO `role_has_permissions` VALUES (1076, 48);
 INSERT INTO `role_has_permissions` VALUES (1077, 1);
+INSERT INTO `role_has_permissions` VALUES (1077, 48);
 INSERT INTO `role_has_permissions` VALUES (1078, 1);
-INSERT INTO `role_has_permissions` VALUES (1079, 1);
-INSERT INTO `role_has_permissions` VALUES (1080, 1);
+INSERT INTO `role_has_permissions` VALUES (1078, 48);
+INSERT INTO `role_has_permissions` VALUES (1167, 1);
+INSERT INTO `role_has_permissions` VALUES (1167, 45);
+INSERT INTO `role_has_permissions` VALUES (1167, 48);
+INSERT INTO `role_has_permissions` VALUES (1168, 1);
+INSERT INTO `role_has_permissions` VALUES (1168, 48);
+INSERT INTO `role_has_permissions` VALUES (1169, 1);
+INSERT INTO `role_has_permissions` VALUES (1169, 45);
+INSERT INTO `role_has_permissions` VALUES (1169, 48);
+INSERT INTO `role_has_permissions` VALUES (1170, 1);
+INSERT INTO `role_has_permissions` VALUES (1170, 48);
+INSERT INTO `role_has_permissions` VALUES (1171, 1);
 
 -- ----------------------------
 -- Table structure for roles
@@ -711,46 +627,16 @@ CREATE TABLE `roles`  (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `roles_name_guard_name_unique`(`name` ASC, `guard_name` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 48 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 49 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of roles
 -- ----------------------------
 INSERT INTO `roles` VALUES (1, 'Super Admin', 'web', '2023-09-27 05:14:54', '2024-01-24 09:30:04');
-INSERT INTO `roles` VALUES (14, 'Registration OC - Loans', 'web', '2024-01-24 09:48:45', '2024-01-24 09:48:45');
-INSERT INTO `roles` VALUES (15, 'Registration IC - Loans', 'web', '2024-01-24 09:50:36', '2024-01-24 09:50:36');
-INSERT INTO `roles` VALUES (16, 'Registration Clerk - Loans', 'web', '2024-01-24 09:50:50', '2024-01-30 09:31:23');
-INSERT INTO `roles` VALUES (17, 'Registration OC - Withdrawal', 'web', '2024-01-24 09:51:16', '2024-01-24 09:51:16');
-INSERT INTO `roles` VALUES (18, 'Registration IC - Withdrawal', 'web', '2024-01-24 09:51:55', '2024-01-24 09:51:55');
-INSERT INTO `roles` VALUES (19, 'Registration Clerk - Withdrawal', 'web', '2024-01-24 09:52:28', '2024-01-30 09:32:06');
-INSERT INTO `roles` VALUES (20, 'Ledger Section OC', 'web', '2024-01-24 09:52:49', '2024-01-24 10:17:40');
-INSERT INTO `roles` VALUES (21, 'Ledger Section IC', 'web', '2024-01-24 09:53:08', '2024-01-24 10:17:49');
-INSERT INTO `roles` VALUES (22, 'Ledger Section Cleark', 'web', '2024-01-24 09:53:22', '2024-01-24 10:18:01');
-INSERT INTO `roles` VALUES (23, 'Loan Section 85 - OC', 'web', '2024-01-24 09:54:25', '2024-01-24 09:54:25');
-INSERT INTO `roles` VALUES (24, 'Loan Section 85 - IC', 'web', '2024-01-24 09:54:50', '2024-01-24 09:54:50');
-INSERT INTO `roles` VALUES (25, 'Loan Section 85 - Cleark', 'web', '2024-01-24 09:55:11', '2024-01-24 09:55:11');
-INSERT INTO `roles` VALUES (26, 'Loan Recovery OC', 'web', '2024-01-24 09:55:48', '2024-01-24 09:55:48');
-INSERT INTO `roles` VALUES (27, 'Loan Recovery IC', 'web', '2024-01-24 09:56:04', '2024-01-24 09:56:04');
-INSERT INTO `roles` VALUES (28, 'Loan Recovery Cleark', 'web', '2024-01-24 09:56:34', '2024-01-24 09:56:34');
-INSERT INTO `roles` VALUES (29, 'Audit Section OC', 'web', '2024-01-24 09:57:12', '2024-01-24 10:17:09');
-INSERT INTO `roles` VALUES (30, 'Audit Section  IC', 'web', '2024-01-24 09:57:25', '2024-01-24 10:17:30');
-INSERT INTO `roles` VALUES (31, 'Audit Section Cleark', 'web', '2024-01-24 09:57:40', '2024-01-24 10:18:13');
-INSERT INTO `roles` VALUES (32, 'Full Payment Section OC', 'web', '2024-01-24 09:58:06', '2024-01-24 09:58:06');
-INSERT INTO `roles` VALUES (33, 'Full Payment Section IC', 'web', '2024-01-24 09:58:23', '2024-01-24 09:58:23');
-INSERT INTO `roles` VALUES (34, 'Full Payment Section Cleark', 'web', '2024-01-24 09:58:45', '2024-01-24 09:58:45');
-INSERT INTO `roles` VALUES (35, '80 Payment Section OC', 'web', '2024-01-24 09:59:37', '2024-01-24 09:59:37');
-INSERT INTO `roles` VALUES (36, '80 Payment Section IC', 'web', '2024-01-24 09:59:55', '2024-01-24 09:59:55');
-INSERT INTO `roles` VALUES (37, '80 Payment Section Cleark', 'web', '2024-01-24 10:00:12', '2024-01-24 10:00:12');
-INSERT INTO `roles` VALUES (38, 'Account Section OC', 'web', '2024-01-24 10:01:48', '2024-01-24 10:18:37');
-INSERT INTO `roles` VALUES (39, 'Account Section IC', 'web', '2024-01-24 10:02:08', '2024-01-24 10:19:25');
-INSERT INTO `roles` VALUES (40, 'Account Section Clerk', 'web', '2024-01-24 10:02:39', '2024-01-30 09:35:56');
-INSERT INTO `roles` VALUES (41, 'CEO', 'web', '2024-01-24 10:02:56', '2024-01-24 10:02:56');
-INSERT INTO `roles` VALUES (42, 'Director', 'web', '2024-01-24 10:03:09', '2024-01-24 10:03:09');
-INSERT INTO `roles` VALUES (43, 'SO1(IT)', 'web', '2024-01-24 10:03:47', '2024-01-24 10:03:47');
-INSERT INTO `roles` VALUES (44, 'SO2(IT)', 'web', '2024-01-24 10:04:04', '2024-01-24 10:04:04');
-INSERT INTO `roles` VALUES (45, 'Operator 1', 'web', '2024-01-24 10:04:38', '2024-01-24 10:04:38');
+INSERT INTO `roles` VALUES (45, 'Operator-Print', 'web', '2024-01-24 10:04:38', '2024-05-13 10:15:13');
 INSERT INTO `roles` VALUES (46, 'Operator 2', 'web', '2024-01-24 10:04:48', '2024-01-24 10:04:48');
-INSERT INTO `roles` VALUES (47, 'Operator 3', 'web', '2024-01-24 10:05:00', '2024-01-24 10:05:00');
+INSERT INTO `roles` VALUES (47, 'Customer', 'web', '2024-01-24 10:05:00', '2024-05-10 10:21:23');
+INSERT INTO `roles` VALUES (48, 'Publication OC', 'web', '2024-05-13 04:38:37', '2024-05-13 04:38:37');
 
 -- ----------------------------
 -- Table structure for service_categories
@@ -831,12 +717,15 @@ CREATE TABLE `users`  (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `users_email_unique`(`email` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 139 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 143 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES (1, 'Super Admin', 'admin@gmail.com', NULL, '$2y$10$yHuYapn2xuOkmahe1xokkeaZU3P0c3dqsa9QzWIauZn63Q3THXXtu', 'io6ThX8Cdm7L1nOltIA5AU3vbf4aLXf3nCNIDpSUvZSliSasEKaV6o7frrBg', '2023-09-27 05:14:54', '2023-09-27 05:14:54');
+INSERT INTO `users` VALUES (1, 'Super Admin', 'admin@gmail.com', NULL, '$2y$10$yHuYapn2xuOkmahe1xokkeaZU3P0c3dqsa9QzWIauZn63Q3THXXtu', 'NQRjDmf9sDUylRXXS8zsTKj6RjPeMYXNvz9KUmnLtMuGCxzddSjTmUClsx5z', '2023-09-27 05:14:54', '2023-09-27 05:14:54');
+INSERT INTO `users` VALUES (2, 'Publication OC', 'publicationoc@gmail.com', NULL, '$2y$10$hgOA41KIPcXqPFBBVcEkHejvCVxx/LC9.oaBNeEitRjKmO4LNiWkW', NULL, '2024-05-13 04:40:53', '2024-05-13 04:40:53');
+INSERT INTO `users` VALUES (140, 'Samson Perera', 'abc@gmail.com', NULL, '$2y$10$VaFVukuQsTVsQDo6wK1Th.OIqDZvKSaUWGuOJUdGxAVh1pUyc1cmW', NULL, '2024-05-10 09:43:34', '2024-05-10 09:43:34');
+INSERT INTO `users` VALUES (142, 'Print Operator', 'print@gmail.com', NULL, '$2y$10$SKoMRvjLvcVGYPqG0zGC7uXP7EVVni5TLR82IKVc1byySZNn.e4zm', NULL, '2024-05-13 10:14:03', '2024-05-13 10:14:03');
 
 -- ----------------------------
 -- Table structure for workers
@@ -854,7 +743,7 @@ CREATE TABLE `workers`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of workers

@@ -16,74 +16,77 @@
     <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-lg-3 col-6">
-                                    <!-- small box -->
-                                    <div class="small-box bg-info">
-                                        <div class="inner">
-                                            <p>Pending Orders</p>
-                                            <h3 class="text-center">{{$orders->count()}}</h3>
+            @if(Auth::user()->name == 'Publication OC')
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-3 col-6">
+                                        <!-- small box -->
+                                        <div class="small-box bg-info">
+                                            <div class="inner">
+                                                <p>Pending Orders</p>
+                                                <h3 class="text-center">{{$orders->count()}}</h3>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="ion ion-bag"></i>
+                                            </div>
+                                            <a href="{{ route('orders.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                         </div>
-                                        <div class="icon">
-                                            <i class="ion ion-bag"></i>
-                                        </div>
-                                        <a href="{{ route('orders.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                     </div>
-                                </div>
-                                <!-- ./col -->
-                                <div class="col-lg-3 col-6">
-                                    <!-- small box -->
-                                    <div class="small-box bg-success">
-                                        <div class="inner">
-                                            <p>Registered Customers</p>
-                                            <h3 class="text-center">{{$customers->count()}}</h3>
+                                    <!-- ./col -->
+                                    <div class="col-lg-3 col-6">
+                                        <!-- small box -->
+                                        <div class="small-box bg-success">
+                                            <div class="inner">
+                                                <p>Registered Customers</p>
+                                                <h3 class="text-center">{{$customers->count()}}</h3>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="ion ion-stats-bars"></i>
+                                            </div>
+                                            @can('publication-management-customers')
+                                                <a href="{{ route('customers.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                            @endcan
                                         </div>
-                                        <div class="icon">
-                                            <i class="ion ion-stats-bars"></i>
-                                        </div>
-                                        @can('publication-management-customers')
-                                            <a href="{{ route('customers.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                                        @endcan
                                     </div>
-                                </div>
-                                <!-- ./col -->
-                                <div class="col-lg-3 col-6">
-                                    <!-- small box -->
-                                    <div class="small-box bg-warning">
-                                        <div class="inner">
-                                            <p>Service Categories</p>
-                                            <h3>{{ $serviceCategories->count() }}</h3>
+                                    <!-- ./col -->
+                                    <div class="col-lg-3 col-6">
+                                        <!-- small box -->
+                                        <div class="small-box bg-warning">
+                                            <div class="inner">
+                                                <p>Service Categories</p>
+                                                <h3>{{ $serviceCategories->count() }}</h3>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="ion ion-person-add"></i>
+                                            </div>
+                                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                         </div>
-                                        <div class="icon">
-                                            <i class="ion ion-person-add"></i>
-                                        </div>
-                                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                     </div>
-                                </div>
-                                <!-- ./col -->
-                                <div class="col-lg-3 col-6">
-                                    <!-- small box -->
-                                    <div class="small-box bg-danger">
-                                        <div class="inner">
-                                            <p>Item Categories</p>
-                                            <h3>{{ $itemCategories->count() }}</h3>
+                                    <!-- ./col -->
+                                    <div class="col-lg-3 col-6">
+                                        <!-- small box -->
+                                        <div class="small-box bg-danger">
+                                            <div class="inner">
+                                                <p>Item Categories</p>
+                                                <h3>{{ $itemCategories->count() }}</h3>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="ion ion-pie-graph"></i>
+                                            </div>
+                                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                         </div>
-                                        <div class="icon">
-                                            <i class="ion ion-pie-graph"></i>
-                                        </div>
-                                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                     </div>
+                                    <!-- ./col -->
                                 </div>
-                                <!-- ./col -->
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @endif
+
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-6">

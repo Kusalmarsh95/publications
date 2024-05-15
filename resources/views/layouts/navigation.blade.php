@@ -135,7 +135,6 @@
                     </ul>
                 </li>
             @endcan
-            @can('publication-management')
                 <li class="nav-item {{ request()->is('customers*') || request()->is('orders*') ?  'menu-open' : '' }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-print text-orange"></i>
@@ -150,17 +149,14 @@
                             </a>
                         </li>
                         @endcan
-                        @can('publication-management-orders')
                         <li class="nav-item">
                             <a href="{{ route('orders.index') }}" class="nav-link {{ request()->routeIs('orders.*') ? 'active' : '' }}">
                                 <i class="nav-icon fas  fa-arrow-up-wide-short text-orange"></i>
                                 <p> {{ __('Orders') }} </p>
                             </a>
                         </li>
-                        @endcan
                     </ul>
                 </li>
-            @endcan
 
             <li class="nav-item">
                 <form method="POST" action="{{ route('logout') }}">

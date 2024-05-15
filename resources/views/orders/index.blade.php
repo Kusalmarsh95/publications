@@ -32,8 +32,10 @@
 
     <div class="card">
         <div class="card-header">
-            <button class="tab-link" onclick="openPage('All', this, '#3e7d2c')" id="defaultOpen">All</button>
-            <button class="tab-link" onclick="openPage('MyOrders', this, '#3e7d2c')">My Orders</button>
+            @if(Auth::user()->name == 'Publication OC')
+                <button class="tab-link" onclick="openPage('All', this, '#3e7d2c')">All</button>
+            @endif
+            <button class="tab-link" onclick="openPage('MyOrders', this, '#3e7d2c')" id="defaultOpen">My Orders</button>
             <button class="tab-link" onclick="openPage('Assign', this, '#3e7d2c')">Assign To Me</button>
             <div id="All" class="tab-content">
                 <table class="table table-bordered " id="all">
